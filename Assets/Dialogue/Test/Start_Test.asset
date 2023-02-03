@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
+  m_Name: Start_Test
+  m_EditorClassIdentifier: 
+  dialogue: Hello I'm Slask, Who are you?
+  dialogueOptions:
+  - {fileID: 11400000, guid: 47e78a05c573db041846a8c503f399d9, type: 2}
+  - {fileID: 11400000, guid: e1cdff64742d8a0498be1c30b65ac2ce, type: 2}
+  - {fileID: 11400000, guid: a8a32fb76cff38d47b94bc157c897670, type: 2}
