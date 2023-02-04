@@ -17,7 +17,10 @@ namespace DialogueSystem
         [SerializeField]
         private DialogueBase[] leadsTo;
 
-        public abstract void Invoke(DialogueReader reader);
+        public virtual void Invoke(DialogueReader reader) 
+        { 
+            Debug.LogError("Faulty invoke: " + name); 
+        }
         public DialogueBase[] GetLeadsTo()
         {
             return leadsTo;

@@ -6,9 +6,16 @@ using DialogueSystem;
 
 public class DialogueReader : MonoBehaviour
 {
-    [SerializeField] private DialogueBase startDialogue;
+    private const float quietTime = 120.0f;
+    public float quietTimer;
+
+    [SerializeField]
+    private DialogueBase startDialogue;
     private DialogueBase queuedDialogue;
-    [SerializeField] private DialogueUI dialogueUI;
+    [SerializeField]
+    private DialogueUI dialogueUI;
+    private int responseAttempt = 0;
+    private string hint;
 
     private void Awake()
     {
@@ -96,6 +103,7 @@ public class DialogueReader : MonoBehaviour
         if (queuedDialogue == null || queuedDialogue.dialogueType == DialogueType.NULL)
         {
             Debug.LogError("Dialogue queue is null: " + name);
+            Debug.Log("TODO: You died");
             return;
         }
 
@@ -104,12 +112,19 @@ public class DialogueReader : MonoBehaviour
 
     public void SelectOption(int optionIndex)
     {
+        if (optionIndex == -1)
+        {
+            PrintDialogueText(WrongAnswerResponses.noAnswer);
+            return;
+        }
+
         DialogueBase option = queuedDialogue.GetLeadsTo()[optionIndex];
         DialogueBase[] options = option.GetLeadsTo();
 
         if (options == null || options.Length < 1)
         {
             Debug.LogError("Option has no further dialogue.");
+            Debug.Log("TODO: You died");
             return;
         }
 
@@ -118,7 +133,46 @@ public class DialogueReader : MonoBehaviour
 
     public void SubmitOption(string option)
     {
-        queuedDialogue = ((TypeAnswer)queuedDialogue).ValidateAnswer(option);
+        string response = "";
+        TypeAnswer leadsTo = (TypeAnswer)queuedDialogue.GetLeadsTo()[0];
+        DialogueBase return_val = leadsTo.ValidateAnswer(option, ref response);
+
+        if (return_val != null)
+        {
+            responseAttempt = 0;
+            hint = "";
+            queuedDialogue = return_val;
+            return;
+        }
+
+        responseAttempt++;
+
+        // Give Hint
+        if (responseAttempt >= 3)
+        {
+            hint = " It starts with a " + leadsTo.GetFirstLetterOfAnswer() + ".";
+        }
+
+        // Game Over
+        if (responseAttempt >= 6)
+        {
+            Debug.Log("TODO: You died");
+            return;
+        }
+
+        PrintDialogueText(response);
+    }
+
+    private void PrintDialogueText(string dialogue)
+    {
+        if (string.IsNullOrWhiteSpace(hint))
+        {
+            dialogueUI.PrintMain(dialogue);
+        }
+        else
+        {
+            dialogueUI.PrintMain(dialogue + hint);
+        }
     }
 
     private void PrintDialogueText(MainDialogue dialogue)
@@ -143,8 +197,40 @@ public class DialogueReader : MonoBehaviour
         dialogueUI.SetOptions(parsedOptions);
     }
 
+    public void StartQuietTimer(DialogueType dialogueType)
+    {
+        StartCoroutine(StartQuietTimerIEnumerator(dialogueType));
+    }
+
     private void ActivateTyping()
     {
         dialogueUI.SetTyping();
+    }
+
+    private IEnumerator StartQuietTimerIEnumerator(DialogueType dialogueType)
+    {
+        quietTimer = quietTime;
+
+        while (quietTimer > 0f)
+        {
+            yield return null;
+            quietTimer -= Time.deltaTime;
+        }
+
+        quietTimer = quietTime;
+
+        if (dialogueType == DialogueType.TYPE)
+        {
+            SubmitOption("");
+        }
+        else
+        {
+            SelectOption(-1);
+        }
+    }
+
+    public float GetTimerNormalized()
+    {
+        return quietTimer / quietTime;
     }
 }
