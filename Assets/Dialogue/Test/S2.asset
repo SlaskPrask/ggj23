@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83613cc67d865f46a50df79720fb06d, type: 3}
   m_Name: S2
   m_EditorClassIdentifier: 
-  leadsTo:
-  - {fileID: 11400000, guid: da08e10539aed9d40b03747b7fa59c05, type: 2}
+  leadsTo: {fileID: 11400000, guid: da08e10539aed9d40b03747b7fa59c05, type: 2}
   correctAnswer: Cool

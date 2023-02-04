@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e8529cfa1e91a40ab044d059590ddf, type: 3}
   m_Name: S3_1
   m_EditorClassIdentifier: 
-  leadsTo:
-  - {fileID: 11400000, guid: 62c730e0917e9a64e84577c5c61474e5, type: 2}
+  leadsTo: {fileID: 0}
   correctAnswer: Die
   wrongAnswers:
   - Live

@@ -81,7 +81,17 @@ public class DialogueReader : MonoBehaviour
     /// </summary>
     public void DoEvent(SpecialEvent.GameEvent eventType)
     {
-        Debug.Log("TODO: Do Event: " + eventType);
+        switch (eventType)
+        {
+            case SpecialEvent.GameEvent.GAME_OVER:
+                GameOver();
+                break;
+            case SpecialEvent.GameEvent.LOAD_SCENE:
+                LoadScene();
+                break;
+            default:
+                break;
+        }
     }
 
     public void AdvanceDialogue()
@@ -119,9 +129,7 @@ public class DialogueReader : MonoBehaviour
         }
         else
         {
-            //TODO Game Over
-            //queuedDialogue = options[0];
-            SetTempAsQueue(AnswerResponses.wrongResponses[Random.Range(0, AnswerResponses.wrongResponses.Length)]);
+            GameOver();
         }
     }
 
@@ -150,7 +158,7 @@ public class DialogueReader : MonoBehaviour
         // Game Over
         if (responseAttempt >= 6)
         {
-            Debug.Log("TODO: You died");
+            GameOver();
             return;
         }
 
@@ -166,13 +174,13 @@ public class DialogueReader : MonoBehaviour
 
     private void PrintDialogueText(MainDialogue dialogue)
     {
-        if (string.IsNullOrWhiteSpace(hint))
+        if (queuedDialogue == tempDialogue || string.IsNullOrWhiteSpace(hint))
         {
             dialogueUI.PrintMain(dialogue.GetParsedDialogue());
         }
         else
         {
-            dialogueUI.PrintMain(dialogue + hint);
+            dialogueUI.PrintMain(dialogue.GetParsedDialogue() + hint);
         }
     }
 
@@ -195,6 +203,16 @@ public class DialogueReader : MonoBehaviour
     private void ActivateTyping()
     {
         dialogueUI.SetTyping();
+    }
+
+    private void GameOver()
+    {
+        dialogueUI.GameOver();
+    }
+
+    private void LoadScene()
+    {
+        dialogueUI.LoadScene();
     }
 
     private IEnumerator StartQuietTimerIEnumerator(DialogueType dialogueType)

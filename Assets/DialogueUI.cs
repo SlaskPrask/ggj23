@@ -204,4 +204,14 @@ public class DialogueUI : MonoBehaviour
 
         reader.AdvanceDialogue();
     }
+
+    public void GameOver()
+    {
+
+    }
+
+    public void LoadScene()
+    {
+
+    }
 }

@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
   m_Name: Start_Test
   m_EditorClassIdentifier: 
-  leadsTo:
-  - {fileID: 11400000, guid: 47e78a05c573db041846a8c503f399d9, type: 2}
+  leadsTo: {fileID: 11400000, guid: 47e78a05c573db041846a8c503f399d9, type: 2}
   dialogue: Hello I'm Slask, Who are you?
