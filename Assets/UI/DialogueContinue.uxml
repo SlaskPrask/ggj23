@@ -2,7 +2,7 @@
     <Style src="project://database/Assets/UI/Style.uss?fileID=7433441132597879392&amp;guid=0c4982791bfade044810a98853e43250&amp;type=3#Style" />
     <ui:VisualElement name="dialogue-continue" class="dialogue-continue" style="height: 100%; flex-direction: column-reverse; align-items: flex-end;">
         <ui:VisualElement name="continue-text-container">
-            <ui:Label text="Continue . . ." display-tooltip-when-elided="true" name="continue-text" style="width: 80px;" />
+            <ui:Label text="Continue . . ." display-tooltip-when-elided="true" name="continue-text" style="width: 90px; padding-right: 8px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

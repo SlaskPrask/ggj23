@@ -15,6 +15,7 @@ public class DialogueUI : MonoBehaviour
 
     public UIComponent optionComponent;
     public UIComponent continueComponent;
+    public UIComponent inputComponent;
     public DialogueReader reader;
     public float textCharacterDelay = 0.05f;
 
@@ -51,6 +52,8 @@ public class DialogueUI : MonoBehaviour
 
     public void PrintMain(string text)
     {
+        dialogueBox.RemoveFromClassList("full-size");
+
         noSubmit = false;
         optionsContainer.Clear();
         dialogueFullText.text = text;
@@ -70,6 +73,7 @@ public class DialogueUI : MonoBehaviour
     {
         DialogueContinue continueElement = continueComponent.Instantiate<DialogueContinue>(optionsContainer, gameObject);
         noSubmit = true;
+        dialogueBox.AddToClassList("full-size");
     }
 
     public void SetOptions(string[] options)
@@ -85,6 +89,8 @@ public class DialogueUI : MonoBehaviour
 
     public void SetTyping()
     {
+        DialogueTextInput textElement = inputComponent.Instantiate<DialogueTextInput>(optionsContainer, gameObject);
+        textElement.SetUp(this);
     }
 
     private IEnumerator ScrollText()
@@ -151,6 +157,12 @@ public class DialogueUI : MonoBehaviour
             option.AddToClassList("show-option");
         }
 
+        TextField textField = uiDocument.rootVisualElement.Query<TextField>(null, "unity-text-field");
+        if (textField != null)
+        {
+            textField.Focus();
+        }
+
         StartCoroutine(optionShowing = DialogueDone());
     }
 
@@ -163,18 +175,33 @@ public class DialogueUI : MonoBehaviour
 
     public void SelectOption(int option)
     {
+        if (phase != DialoguePhase.Ready)
+        {
+            return;
+        }
+
         reader.SelectOption(option);
         reader.AdvanceDialogue();
     }
 
     public void SubmitAnswer(string answer)
     {
+        if (phase != DialoguePhase.Ready)
+        {
+            return;
+        }
+
         reader.SubmitOption(answer);
         reader.AdvanceDialogue();
     }
 
     public void ContinueAction()
     {
+        if (phase != DialoguePhase.Ready)
+        {
+            return;
+        }
+
         reader.AdvanceDialogue();
     }
 }
