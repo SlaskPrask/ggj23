@@ -5,8 +5,7 @@ using UnityEngine.UIElements;
 
 public class DialogueOption : UIBehaviour
 {
-    [Space]
-    private Label textElement;
+    [Space] private Label textElement;
 
     public override void InitUI(VisualElement element)
     {
@@ -18,5 +17,10 @@ public class DialogueOption : UIBehaviour
     public void SetText(string text)
     {
         textElement.text = text;
+    }
+
+    public float GetHeight()
+    {
+        return textElement.localBound.height;
     }
 }
