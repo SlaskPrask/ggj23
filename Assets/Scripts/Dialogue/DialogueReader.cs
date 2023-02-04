@@ -22,6 +22,11 @@ public class DialogueReader : MonoBehaviour
         queuedDialogue = startDialogue;
     }
 
+    private void Start()
+    {
+        AdvanceDialogue();
+    }
+
     /// <summary>
     /// This is called by the main dialogue
     /// </summary>
