@@ -24,7 +24,7 @@ public class DialogueContinue : UIBehaviour
         {
             yield return WAIT;
             phase = phase < 2 ? phase + 1 : 0;
-            text.text = string.Concat(Enumerable.Repeat(". ", phase + 1));
+            text.text = "Continue" + string.Concat(Enumerable.Repeat(" .", phase + 1));
         }
     }
 }

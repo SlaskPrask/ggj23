@@ -68,7 +68,7 @@ public class DialogueUI : MonoBehaviour
 
     public void QueueNext()
     {
-        DialogueOption continueElement = continueComponent.Instantiate<DialogueOption>(optionsContainer, gameObject);
+        DialogueContinue continueElement = continueComponent.Instantiate<DialogueContinue>(optionsContainer, gameObject);
         noSubmit = true;
     }
 
@@ -121,7 +121,6 @@ public class DialogueUI : MonoBehaviour
                 }
 
                 phase = DialoguePhase.Ready;
-
 
                 break;
             case DialoguePhase.Ready:
