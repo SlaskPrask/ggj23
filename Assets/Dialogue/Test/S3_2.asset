@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e8529cfa1e91a40ab044d059590ddf, type: 3}
   m_Name: S3_2
   m_EditorClassIdentifier: 
-  leadsTo: {fileID: 11400000, guid: 59c9a04b18dcbcf42b52e9fd2a019e09, type: 2}
-  dialogue: Load next scene
+  leadsTo:
+  - {fileID: 11400000}
+  optionText: Load next scene

@@ -89,7 +89,7 @@ public class DialogueReader : MonoBehaviour
     /// </summary>
     public void DoEvent(SpecialEvent.GameEvent eventType)
     {
-        Debug.Log("TODO: Do Event");
+        Debug.Log("TODO: Do Event: " + eventType);
     }
 
     public void AdvanceDialogue()
