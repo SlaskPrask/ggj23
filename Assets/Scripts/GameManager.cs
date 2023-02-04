@@ -28,5 +28,6 @@ public class GameManager : MonoBehaviour
         }
 
         audio = GetComponentInChildren<AudioManager>();
+        audio.Initialize();
     }
 }
