@@ -25,6 +25,7 @@ public class DialogueUI : MonoBehaviour
     private IEnumerator optionShowing;
     private WaitForSeconds textAppearDelay;
     private DialoguePhase phase;
+    private static WaitForSeconds WAIT_HALF = new WaitForSeconds(0.5f);
 
     void Awake()
     {
@@ -43,13 +44,13 @@ public class DialogueUI : MonoBehaviour
 
     void Start()
     {
-        StartDialogue("i'm slask", "but i'm slask", "i'm also slask");
+        PrintMain("i'm slask");
+        SetOptions(new string[] { "i'm slask", "i'm slask" });
     }
 
-    public void StartDialogue(string text, params string[] options)
+    public void PrintMain(string text)
     {
         optionsContainer.Clear();
-
         dialogueFullText.text = text;
         dialogueText.text = "";
 
@@ -60,11 +61,6 @@ public class DialogueUI : MonoBehaviour
 
         StartCoroutine(scroll = ScrollText());
 
-        foreach (string option in options)
-        {
-            DialogueOption optionElement = optionComponent.Instantiate<DialogueOption>(optionsContainer, gameObject);
-        }
-
         optionsContainer.style.height = 0;
         optionsContainer.RemoveFromClassList("animate-dialogue-height");
         optionsContainer.AddToClassList("animate-dialogue-height");
@@ -72,16 +68,17 @@ public class DialogueUI : MonoBehaviour
         phase = DialoguePhase.MainText;
     }
 
-    public void PrintMain(string text)
+    public void QueueNext()
     {
     }
 
-    public void QueueNext(params string[] options)
+    public void SetOptions(string[] options)
     {
-    }
-
-    public void SetOptions()
-    {
+        foreach (string option in options)
+        {
+            DialogueOption optionElement = optionComponent.Instantiate<DialogueOption>(optionsContainer, gameObject);
+            optionElement.SetText(option);
+        }
     }
 
     public void SetTyping()
@@ -159,7 +156,7 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator DialogueDone()
     {
-        yield return new WaitForSeconds(1);
+        yield return WAIT_HALF;
         phase = DialoguePhase.Ready;
         optionShowing = null;
     }
