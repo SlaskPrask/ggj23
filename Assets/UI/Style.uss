@@ -85,19 +85,74 @@
 }
 
 .dialogue-main-text-container {
+    width: 100%;
+    min-height: 40px;
 }
 
 .dialogue {
     color: rgb(255, 255, 255);
 }
 
-.show-option {
-    transition-property: opacity;
-    transition-duration: 0.5s;
-    opacity: 1;
-}
-
 .dialogue-continue {
     width: 100%;
-    color: rgba(255, 255, 255, 255);
+    color: rgb(255, 255, 255);
+    opacity: 0;
+}
+
+.dialogue-text-input {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.dialogue-text-field {
+    width: 100%;
+}
+
+.button {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.button:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.button:active {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+#dialogue.full-size #text-container {
+    height: 135px;
+    width: 100%;
+}
+
+#dialogue.full-size #options {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    min-height: auto;
+}
+
+.options {
+    height: 95px;
+    flex-wrap: wrap;
+}
+
+.dialogue-text-field .unity-text-field__input {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+    padding: 2px 8px 2px 8px;
+}
+
+.show-option {
+    transition-property: opacity;
+    transition-duration: 0.25s;
+    opacity: 1;
+    transition-timing-function: linear;
 }
