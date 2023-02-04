@@ -16,6 +16,7 @@ public class DialogueUI : MonoBehaviour
     public UIComponent optionComponent;
     public UIComponent continueComponent;
     public UIComponent inputComponent;
+    public UIComponent timerComponent;
     public DialogueReader reader;
     public float textCharacterDelay = 0.05f;
 
@@ -30,6 +31,7 @@ public class DialogueUI : MonoBehaviour
     private DialoguePhase phase;
     private static WaitForSeconds WAIT_HALF = new WaitForSeconds(0.5f);
     private bool noSubmit;
+    private DialogueTimer timer;
 
     void Awake()
     {
@@ -52,6 +54,7 @@ public class DialogueUI : MonoBehaviour
 
     public void PrintMain(string text)
     {
+        RemoveTimer();
         dialogueBox.RemoveFromClassList("full-size");
 
         noSubmit = false;
@@ -78,6 +81,7 @@ public class DialogueUI : MonoBehaviour
 
     public void SetOptions(string[] options)
     {
+        StartTimer();
         for (int i = 0; i < options.Length; i++)
         {
             {
@@ -89,6 +93,7 @@ public class DialogueUI : MonoBehaviour
 
     public void SetTyping()
     {
+        StartTimer();
         DialogueTextInput textElement = inputComponent.Instantiate<DialogueTextInput>(optionsContainer, gameObject);
         textElement.SetUp(this);
     }
@@ -173,6 +178,23 @@ public class DialogueUI : MonoBehaviour
         optionShowing = null;
     }
 
+    private void RemoveTimer()
+    {
+        if (timer)
+        {
+            timer.remove();
+            timer = null;
+        }
+    }
+
+    private void StartTimer()
+    {
+        RemoveTimer();
+
+        timer = timerComponent.Instantiate<DialogueTimer>(dialogueBox, gameObject);
+        timer.SetUp(reader.GetTimerNormalized);
+    }
+
     public void SelectOption(int option)
     {
         if (phase != DialoguePhase.Ready)
@@ -207,11 +229,9 @@ public class DialogueUI : MonoBehaviour
 
     public void GameOver()
     {
-
     }
 
     public void LoadScene()
     {
-
     }
 }

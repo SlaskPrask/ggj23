@@ -156,3 +156,6 @@
     opacity: 1;
     transition-timing-function: linear;
 }
+
+.timer-cursor {
+}

@@ -98,6 +98,7 @@ MonoBehaviour:
   optionComponent: {fileID: 11400000, guid: d6fbc4f924c01ff47be3b617460e6382, type: 2}
   continueComponent: {fileID: 11400000, guid: 3d8f11695b37b1d46b11920cd5fae9d5, type: 2}
   inputComponent: {fileID: 11400000, guid: a6de089451e00b64a90cbaab7971bdd6, type: 2}
+  timerComponent: {fileID: 11400000, guid: 1adf861bb4a18be44880887b990413b0, type: 2}
   reader: {fileID: 4490435938793449773}
   textCharacterDelay: 0.02
 --- !u!1 &6281627267822647340
