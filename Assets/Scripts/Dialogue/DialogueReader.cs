@@ -57,7 +57,8 @@ public class DialogueReader : MonoBehaviour
 
         if (leadsTo.Length > 1 && (leadToType == DialogueType.MAIN ||
                                    leadToType == DialogueType.EVENT ||
-                                   leadToType == DialogueType.TYPE))
+                                   leadToType == DialogueType.TYPE ||
+                                   leadToType == DialogueType.PICK))
         {
             Debug.LogError("Dialogue type is NULL for option in: " + name);
             return;
@@ -79,7 +80,7 @@ public class DialogueReader : MonoBehaviour
                 QueueNext(leadsTo[0]);
                 break;
             case DialogueType.PICK:
-                SetOptions(leadsTo);
+                SetOptions(leadsTo[0]);
                 break;
             case DialogueType.TYPE:
                 ActivateTyping();
@@ -103,7 +104,6 @@ public class DialogueReader : MonoBehaviour
         if (queuedDialogue == null || queuedDialogue.dialogueType == DialogueType.NULL)
         {
             Debug.LogError("Dialogue queue is null: " + name);
-            Debug.Log("TODO: You died");
             return;
         }
 
@@ -114,21 +114,29 @@ public class DialogueReader : MonoBehaviour
     {
         if (optionIndex == -1)
         {
-            PrintDialogueText(WrongAnswerResponses.noAnswer);
+            PrintDialogueText(AnswerResponses.noAnswer);
             return;
         }
 
-        DialogueBase option = queuedDialogue.GetLeadsTo()[optionIndex];
-        DialogueBase[] options = option.GetLeadsTo();
-
-        if (options == null || options.Length < 1)
+        PickOption option = (PickOption)queuedDialogue.GetLeadsTo()[0];
+        DialogueBase[] leadsTo = option.GetLeadsTo();
+        if (leadsTo == null || leadsTo.Length < 1)
         {
             Debug.LogError("Option has no further dialogue.");
-            Debug.Log("TODO: You died");
             return;
         }
 
-        queuedDialogue = options[0];
+        if (option.CheckCorrectAnswer(optionIndex))
+        {
+            queuedDialogue = leadsTo[0];
+            PrintDialogueText(AnswerResponses.correctResponses[Random.Range(0, AnswerResponses.correctResponses.Length)]);
+        }
+        else
+        {
+            //TODO Game Over
+            //queuedDialogue = options[0];
+            PrintDialogueText(AnswerResponses.wrongResponses[Random.Range(0, AnswerResponses.wrongResponses.Length)]);
+        }
     }
 
     public void SubmitOption(string option)
@@ -186,15 +194,9 @@ public class DialogueReader : MonoBehaviour
         dialogueUI.QueueNext();
     }
 
-    public void SetOptions(DialogueBase[] options)
+    public void SetOptions(DialogueBase options)
     {
-        string[] parsedOptions = new string[options.Length];
-        for (int i = 0; i < options.Length; i++)
-        {
-            parsedOptions[i] = ((PickOption)options[i]).GetParsedOption();
-        }
-
-        dialogueUI.SetOptions(parsedOptions);
+        dialogueUI.SetOptions(((PickOption)options).GetShuffeledOption());
     }
 
     public void StartQuietTimer(DialogueType dialogueType)

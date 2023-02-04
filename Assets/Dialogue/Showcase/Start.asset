@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac1897f05375a024fa41742ac59b3964, type: 3}
-  m_Name: Load
+  m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
+  m_Name: Start
   m_EditorClassIdentifier: 
-  leadsTo: []
-  doEvent: 0
+  leadsTo:
+  - {fileID: 11400000, guid: c1b696ece6dad0a4896eca40b64a2ef2, type: 2}
+  dialogue: Hello stranger, u look weird.

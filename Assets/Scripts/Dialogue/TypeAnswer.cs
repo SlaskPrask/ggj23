@@ -22,7 +22,7 @@ namespace DialogueSystem
             if (string.IsNullOrWhiteSpace(answer))
             {
                 // Quiet
-                response = WrongAnswerResponses.noAnswer;
+                response = AnswerResponses.noAnswer;
                 return null;
             }
             if (correctAnswer.ToLower() == answer.ToLower())
@@ -31,7 +31,7 @@ namespace DialogueSystem
             }
 
             //Wrong answer
-            response = WrongAnswerResponses.responses[UnityEngine.Random.Range(0, WrongAnswerResponses.responses.Length)];
+            response = AnswerResponses.wrongResponses[UnityEngine.Random.Range(0, AnswerResponses.wrongResponses.Length)];
             return null;
         }
 

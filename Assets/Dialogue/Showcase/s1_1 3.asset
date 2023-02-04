@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70e8529cfa1e91a40ab044d059590ddf, type: 3}
-  m_Name: S1_4
+  m_Name: s1_1 3
   m_EditorClassIdentifier: 
   leadsTo:
-  - {fileID: 11400000, guid: 541b9ce76e535d041956c4a9e4fd1796, type: 2}
-  optionText: Slask
+  - {fileID: 11400000, guid: fb7463b59e44d4c489b4724dac322f81, type: 2}
+  correctAnswer: 
+  wrongAnswers: []
