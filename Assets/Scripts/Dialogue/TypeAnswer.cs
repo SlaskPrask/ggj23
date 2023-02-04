@@ -9,6 +9,9 @@ namespace DialogueSystem
     [CreateAssetMenu(menuName = "Dialogue/Type")]
     public class TypeAnswer : DialogueBase
     {
+        [SerializeField]
+        private string correctAnswer;
+
         TypeAnswer()
         {
             dialogueType = DialogueType.TYPE;
@@ -16,7 +19,7 @@ namespace DialogueSystem
 
         public override void Invoke(DialogueReader reader)
         {
-            throw NotImplementedException(
+            throw NotImplementedException()
         }
     }
 }
