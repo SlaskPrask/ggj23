@@ -39,6 +39,9 @@
     padding-top: 2px;
     padding-bottom: 2px;
     width: 100%;
+    color: rgb(255, 255, 255);
+    opacity: 0;
+    flex-shrink: 0;
 }
 
 .option-text {
@@ -58,7 +61,44 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-
 .dialogue-option:active .option-highlight {
     background-color: rgba(0, 0, 0, 0.4);
+}
+
+.dialogue-text {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.dialogue-text-scroll {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.dialogue-text-full {
+    color: rgba(210, 210, 210, 0);
+}
+
+.dialogue-main-text-container {
+}
+
+.dialogue {
+    color: rgb(255, 255, 255);
+}
+
+.animate-dialogue-height {
+    transition-property: height;
+    transition-duration: 0.5s;
+}
+
+.show-option {
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    opacity: 1;
 }
