@@ -15,6 +15,7 @@ public class DialogueUI : MonoBehaviour
 
     public UIComponent optionComponent;
     public UIComponent continueComponent;
+    public DialogueReader reader;
     public float textCharacterDelay = 0.05f;
 
     private UIDocument uiDocument;
@@ -60,26 +61,22 @@ public class DialogueUI : MonoBehaviour
 
         StartCoroutine(scroll = ScrollText());
 
-        optionsContainer.style.height = 0;
-        optionsContainer.RemoveFromClassList("animate-dialogue-height");
-        optionsContainer.AddToClassList("animate-dialogue-height");
-
         phase = DialoguePhase.MainText;
     }
 
     public void QueueNext()
     {
-        optionsContainer.style.height = new StyleLength(StyleKeyword.Auto);
-
         DialogueOption continueElement = continueComponent.Instantiate<DialogueOption>(optionsContainer, gameObject);
     }
 
     public void SetOptions(string[] options)
     {
-        foreach (string option in options)
+        for (int i = 0; i < options.Length; i++)
         {
-            DialogueOption optionElement = optionComponent.Instantiate<DialogueOption>(optionsContainer, gameObject);
-            optionElement.SetText(option);
+            {
+                DialogueOption optionElement = optionComponent.Instantiate<DialogueOption>(optionsContainer, gameObject);
+                optionElement.SetUp(this, i, options[i]);
+            }
         }
     }
 
@@ -96,6 +93,8 @@ public class DialogueUI : MonoBehaviour
         }
 
         scroll = null;
+
+        ProgressDialogue();
     }
 
     private void ProgressDialogue()
@@ -140,16 +139,10 @@ public class DialogueUI : MonoBehaviour
             scroll = null;
         }
 
-        optionsContainer.AddToClassList("animate-dialogue-height");
-
-        float optionsHeight = 0;
         foreach (VisualElement option in optionsContainer.Children())
         {
             option.AddToClassList("show-option");
-            optionsHeight += option.worldBound.height;
         }
-
-        optionsContainer.style.height = optionsHeight * 2;
 
         StartCoroutine(optionShowing = DialogueDone());
     }
@@ -159,5 +152,22 @@ public class DialogueUI : MonoBehaviour
         yield return WAIT_HALF;
         phase = DialoguePhase.Ready;
         optionShowing = null;
+    }
+
+    public void SelectOption(int option)
+    {
+        reader.SelectOption(option);
+        reader.AdvanceDialogue();
+    }
+
+    public void SubmitAnswer(string answer)
+    {
+        reader.SubmitOption(answer);
+        reader.AdvanceDialogue();
+    }
+
+    public void ContinueAction()
+    {
+        reader.AdvanceDialogue();
     }
 }

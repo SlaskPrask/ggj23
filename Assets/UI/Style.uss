@@ -34,14 +34,13 @@
 }
 
 .dialogue-option {
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 2px;
-    padding-bottom: 2px;
     width: 100%;
     color: rgb(255, 255, 255);
     opacity: 0;
     flex-shrink: 0;
+    height: 20px;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .option-text {
@@ -92,14 +91,9 @@
     color: rgb(255, 255, 255);
 }
 
-.animate-dialogue-height {
-    transition-property: height;
-    transition-duration: 0.5s;
-}
-
 .show-option {
     transition-property: opacity;
-    transition-duration: 10s;
+    transition-duration: 0.5s;
     opacity: 1;
 }
 

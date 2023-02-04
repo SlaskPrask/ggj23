@@ -96,6 +96,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionComponent: {fileID: 11400000, guid: d6fbc4f924c01ff47be3b617460e6382, type: 2}
+  continueComponent: {fileID: 0}
+  reader: {fileID: 4490435938793449773}
   textCharacterDelay: 0.02
 --- !u!1 &6281627267822647340
 GameObject:

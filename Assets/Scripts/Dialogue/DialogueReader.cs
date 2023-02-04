@@ -6,11 +6,9 @@ using DialogueSystem;
 
 public class DialogueReader : MonoBehaviour
 {
-    [SerializeField]
-    private DialogueBase startDialogue;
+    [SerializeField] private DialogueBase startDialogue;
     private DialogueBase queuedDialogue;
-    [SerializeField]
-    private DialogueUI dialogueUI;
+    [SerializeField] private DialogueUI dialogueUI;
 
     private void Awake()
     {
@@ -19,6 +17,7 @@ public class DialogueReader : MonoBehaviour
             Debug.LogError("No dialogue set in: " + name);
             return;
         }
+
         queuedDialogue = startDialogue;
     }
 
@@ -49,9 +48,9 @@ public class DialogueReader : MonoBehaviour
             return;
         }
 
-        if (leadsTo.Length > 1 && (leadToType == DialogueType.MAIN || 
-            leadToType == DialogueType.EVENT ||
-            leadToType == DialogueType.TYPE))
+        if (leadsTo.Length > 1 && (leadToType == DialogueType.MAIN ||
+                                   leadToType == DialogueType.EVENT ||
+                                   leadToType == DialogueType.TYPE))
         {
             Debug.LogError("Dialogue type is NULL for option in: " + name);
             return;
@@ -113,6 +112,7 @@ public class DialogueReader : MonoBehaviour
             Debug.LogError("Option has no further dialogue.");
             return;
         }
+
         queuedDialogue = options[0];
     }
 
@@ -139,6 +139,7 @@ public class DialogueReader : MonoBehaviour
         {
             parsedOptions[i] = ((PickOption)options[i]).GetParsedOption();
         }
+
         dialogueUI.SetOptions(parsedOptions);
     }
 
