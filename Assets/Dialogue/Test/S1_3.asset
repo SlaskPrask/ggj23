@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70e8529cfa1e91a40ab044d059590ddf, type: 3}
   m_Name: S1_3
   m_EditorClassIdentifier: 
-  leadsTo: {fileID: 11400000, guid: 541b9ce76e535d041956c4a9e4fd1796, type: 2}
-  dialogue: Sara
+  leadsTo:
+  - {fileID: 11400000, guid: 541b9ce76e535d041956c4a9e4fd1796, type: 2}
+  optionText: Sara

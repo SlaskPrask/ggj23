@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
   m_Name: T3
   m_EditorClassIdentifier: 
-  dialogue: What do you want?
-  dialogueOptions:
+  leadsTo:
   - {fileID: 11400000, guid: 9a56d4328555dbe4a9f3e5e400d9eea1, type: 2}
   - {fileID: 11400000, guid: eba2b64e783be3240a8a3ecfa2422ecb, type: 2}
+  dialogue: What do you want?
