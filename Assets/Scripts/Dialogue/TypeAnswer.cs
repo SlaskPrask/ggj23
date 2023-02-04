@@ -19,7 +19,22 @@ namespace DialogueSystem
 
         public override void Invoke(DialogueReader reader)
         {
-            throw NotImplementedException()
+            throw new NotImplementedException();
+        }
+
+        public DialogueBase ValidateAnswer(string answer)
+        {
+            if (string.IsNullOrWhiteSpace(answer))
+            {
+                // Quiet
+                return null;
+            }
+            if (correctAnswer.ToLower() == answer.ToLower())
+            {
+                return GetLeadsTo()[0];
+            }
+            //Wrong answer
+            return null;
         }
     }
 }

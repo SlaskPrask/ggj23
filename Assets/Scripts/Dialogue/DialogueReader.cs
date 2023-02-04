@@ -78,6 +78,14 @@ public class DialogueReader : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// This is called by SpecialEvent
+    /// </summary>
+    public void DoEvent(SpecialEvent.GameEvent eventType)
+    {
+        Debug.Log("TODO: Do Event");
+    }
+
     public void AdvanceDialogue()
     {
         if (queuedDialogue == null || queuedDialogue.dialogueType == DialogueType.NULL)
@@ -104,7 +112,7 @@ public class DialogueReader : MonoBehaviour
 
     public void SubmitOption(string option)
     {
-
+        queuedDialogue = ((TypeAnswer)queuedDialogue).ValidateAnswer(option);
     }
 
     private void PrintDialogueText(MainDialogue dialogue)

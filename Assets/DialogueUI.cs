@@ -76,11 +76,11 @@ public class DialogueUI : MonoBehaviour
     {
     }
 
-    public void QueueNext(params string[] options)
+    public void QueueNext()
     {
     }
 
-    public void SetOptions()
+    public void SetOptions(string[] options)
     {
     }
 
