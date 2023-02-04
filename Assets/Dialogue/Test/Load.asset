@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac1897f05375a024fa41742ac59b3964, type: 3}
   m_Name: Load
   m_EditorClassIdentifier: 
-  doEvent: 2
+  leadsTo: []
+  doEvent: 0

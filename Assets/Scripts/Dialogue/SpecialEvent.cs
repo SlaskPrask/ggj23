@@ -15,6 +15,11 @@ namespace DialogueSystem
         [SerializeField]
         private GameEvent doEvent;
 
+        public SpecialEvent()
+        {
+            dialogueType = DialogueType.EVENT;
+        }
+
         public override void Invoke(DialogueReader reader)
         {
             reader.DoEvent(doEvent);

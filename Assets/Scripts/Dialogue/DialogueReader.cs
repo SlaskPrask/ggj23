@@ -57,8 +57,8 @@ public class DialogueReader : MonoBehaviour
 
         if (leadsTo.Length > 1 && (leadToType == DialogueType.MAIN ||
                                    leadToType == DialogueType.EVENT ||
-                                   leadToType == DialogueType.TYPE) ||
-                                   leadToType == DialogueType.PICK)
+                                   leadToType == DialogueType.TYPE ||
+                                   leadToType == DialogueType.PICK))
         {
             Debug.LogError("Dialogue type is NULL for option in: " + name);
             return;

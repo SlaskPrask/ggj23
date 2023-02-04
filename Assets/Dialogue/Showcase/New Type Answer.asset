@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83613cc67d865f46a50df79720fb06d, type: 3}
   m_Name: New Type Answer
   m_EditorClassIdentifier: 
-  leadsTo: []
-  correctAnswer: 
+  leadsTo:
+  - {fileID: 0}
+  correctAnswer: Rabbit

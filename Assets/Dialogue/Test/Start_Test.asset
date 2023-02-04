@@ -14,7 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leadsTo:
   - {fileID: 11400000, guid: 47e78a05c573db041846a8c503f399d9, type: 2}
-  - {fileID: 11400000, guid: e1cdff64742d8a0498be1c30b65ac2ce, type: 2}
-  - {fileID: 11400000, guid: a8a32fb76cff38d47b94bc157c897670, type: 2}
-  - {fileID: 11400000, guid: 25dde6494c7694940b4c581f95c2635f, type: 2}
   dialogue: Hello I'm Slask, Who are you?

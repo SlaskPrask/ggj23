@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: s1_1
   m_EditorClassIdentifier: 
   leadsTo:
-  - {fileID: 0}
-  optionText: 
+  - {fileID: 11400000, guid: fb7463b59e44d4c489b4724dac322f81, type: 2}
+  correctAnswer: 
+  wrongAnswers: []

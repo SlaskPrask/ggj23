@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leadsTo:
   - {fileID: 11400000}
-  optionText: Load next scene
+  correctAnswer: Load next chapter
+  wrongAnswers:
+  - Stay Here
+  - Eat fruit
+  - Poop on the floor

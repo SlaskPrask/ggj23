@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
   m_Name: Test
   m_EditorClassIdentifier: 
-  leadsTo: []
-  dialogue: 
+  leadsTo:
+  - {fileID: 11400000, guid: d89903e55e019cd4ab2c39ef9f32a665, type: 2}
+  - {fileID: 11400000, guid: 1a40d18ab9cf14c4ab1b0d5054d3d0c0, type: 2}
+  - {fileID: 11400000, guid: 64ad2c2358d99324984b46b6d531573c, type: 2}
+  - {fileID: 11400000, guid: a7fb4f3c14bb72c4bb65049634aa915a, type: 2}
+  dialogue: What is 2 + 2?

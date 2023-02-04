@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: New Special Event
   m_EditorClassIdentifier: 
   leadsTo: []
-  doEvent: 0
+  doEvent: 1

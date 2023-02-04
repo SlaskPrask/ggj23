@@ -8,9 +8,9 @@ namespace DialogueSystem
     [CreateAssetMenu(menuName = "Dialogue/Option")]
     public class PickOption : DialogueBase
     {
-        [Multiline]
         [SerializeField]
         private string correctAnswer;
+        [SerializeField]
         private string[] wrongAnswers;
         private int correctChoise = 0;
 

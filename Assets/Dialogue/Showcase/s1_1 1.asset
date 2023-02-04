@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leadsTo:
   - {fileID: 0}
-  optionText: 
+  correctAnswer: 
+  wrongAnswers: []
