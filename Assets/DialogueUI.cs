@@ -72,6 +72,22 @@ public class DialogueUI : MonoBehaviour
         phase = DialoguePhase.MainText;
     }
 
+    public void PrintMain(string text)
+    {
+    }
+
+    public void QueueNext(params string[] options)
+    {
+    }
+
+    public void SetOptions()
+    {
+    }
+
+    public void SetTyping()
+    {
+    }
+
     private IEnumerator ScrollText()
     {
         while (dialogueText.text.Length < dialogueFullText.text.Length)
