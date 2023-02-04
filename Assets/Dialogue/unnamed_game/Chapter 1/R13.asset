@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
+  m_Name: R13
+  m_EditorClassIdentifier: 
+  leadsTo: {fileID: 11400000, guid: 5ef0bc70e2ffd8b48b00f1a139cd478f, type: 2}
+  dialogue: "Some people believe in me and others don\u2019t. At night I roam around
+    and sometimes I float. If you hear a troubled noise coming from the ground, go
+    run and hide from my creepy sound. What am I?"

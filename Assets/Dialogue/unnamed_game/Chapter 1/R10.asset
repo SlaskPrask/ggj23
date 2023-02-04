@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
+  m_Name: R10
+  m_EditorClassIdentifier: 
+  leadsTo: {fileID: 11400000, guid: ac4328b583aa4ca49bfcf091cb5c7c25, type: 2}
+  dialogue: 'A man is found murdered on a Sunday morning. His wife calls the police,
+    who question the wife and the staff, and are given the following alibis: the
+    wife says she was sleeping, the butler was cleaning the closet, the gardener
+    was picking vegetables, the maid was getting the mail, and the cook was preparing
+    breakfast. Immediately, the police arrest the murderer. Who did it?'
