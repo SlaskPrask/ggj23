@@ -6,6 +6,9 @@ using DialogueSystem;
 
 public class DialogueReader : MonoBehaviour
 {
+    private const float quietTime = 120.0f;
+    public float quietTimer;
+
     [SerializeField]
     private DialogueBase startDialogue;
     private DialogueBase queuedDialogue;
@@ -99,6 +102,7 @@ public class DialogueReader : MonoBehaviour
         if (queuedDialogue == null || queuedDialogue.dialogueType == DialogueType.NULL)
         {
             Debug.LogError("Dialogue queue is null: " + name);
+            Debug.Log("TODO: You died");
             return;
         }
 
@@ -107,12 +111,19 @@ public class DialogueReader : MonoBehaviour
 
     public void SelectOption(int optionIndex)
     {
+        if (optionIndex == -1)
+        {
+            PrintDialogueText(WrongAnswerResponses.noAnswer);
+            return;
+        }
+
         DialogueBase option = queuedDialogue.GetLeadsTo()[optionIndex];
         DialogueBase[] options = option.GetLeadsTo();
 
         if (options == null || options.Length < 1)
         {
             Debug.LogError("Option has no further dialogue.");
+            Debug.Log("TODO: You died");
             return;
         }
         queuedDialogue = options[0];
@@ -146,7 +157,6 @@ public class DialogueReader : MonoBehaviour
             Debug.Log("TODO: You died");
             return;
         }
-
 
         PrintDialogueText(response);
     }
@@ -184,8 +194,40 @@ public class DialogueReader : MonoBehaviour
         dialogueUI.SetOptions(parsedOptions);
     }
 
+    public void StartQuietTimer(DialogueType dialogueType)
+    {
+        StartCoroutine(StartQuietTimerIEnumerator(dialogueType));
+    }
+
     private void ActivateTyping()
     {
         dialogueUI.SetTyping();
+    }
+
+    private IEnumerator StartQuietTimerIEnumerator(DialogueType dialogueType)
+    {
+        quietTimer = quietTime;
+
+        while (quietTimer > 0f)
+        {
+            yield return null;
+            quietTimer -= Time.deltaTime;
+        }
+
+        quietTimer = quietTime;
+
+        if (dialogueType == DialogueType.TYPE)
+        {
+            SubmitOption("");
+        }
+        else
+        {
+            SelectOption(-1);
+        }
+    }
+
+    public float GetTimerNormalized()
+    {
+        return quietTimer / quietTime;
     }
 }
