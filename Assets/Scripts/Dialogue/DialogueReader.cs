@@ -119,7 +119,12 @@ public class DialogueReader : MonoBehaviour
 
     public void SetOptions(PickOption[] options)
     {
-        dialogueUI.SetOptions();
+        string[] parsedOptions = new string[options.Length];
+        for (int i = 0; i < options.Length; i++)
+        {
+            parsedOptions[i] = options[i].GetParsedOption();
+        }
+        dialogueUI.SetOptions(parsedOptions);
     }
 
     private void ActivateTyping()
