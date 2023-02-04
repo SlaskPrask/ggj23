@@ -94,8 +94,6 @@ public class DialogueUI : MonoBehaviour
         }
 
         scroll = null;
-
-        FinishScroll();
     }
 
     private void ProgressDialogue()
