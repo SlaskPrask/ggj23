@@ -28,6 +28,7 @@ public class DialogueUI : MonoBehaviour
     private WaitForSeconds textAppearDelay;
     private DialoguePhase phase;
     private static WaitForSeconds WAIT_HALF = new WaitForSeconds(0.5f);
+    private bool noSubmit;
 
     void Awake()
     {
@@ -50,6 +51,7 @@ public class DialogueUI : MonoBehaviour
 
     public void PrintMain(string text)
     {
+        noSubmit = false;
         optionsContainer.Clear();
         dialogueFullText.text = text;
         dialogueText.text = "";
@@ -67,6 +69,7 @@ public class DialogueUI : MonoBehaviour
     public void QueueNext()
     {
         DialogueOption continueElement = continueComponent.Instantiate<DialogueOption>(optionsContainer, gameObject);
+        noSubmit = true;
     }
 
     public void SetOptions(string[] options)
@@ -122,6 +125,11 @@ public class DialogueUI : MonoBehaviour
 
                 break;
             case DialoguePhase.Ready:
+                if (noSubmit)
+                {
+                    ContinueAction();
+                }
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
