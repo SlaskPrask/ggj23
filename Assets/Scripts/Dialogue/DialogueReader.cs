@@ -18,6 +18,7 @@ public class DialogueReader : MonoBehaviour
     private string hint;
 
     private MainDialogue tempDialogue;
+    Coroutine routine;
 
     private void Awake()
     {
@@ -107,9 +108,11 @@ public class DialogueReader : MonoBehaviour
 
     public void SelectOption(int optionIndex)
     {
+        if (routine != null)
+            StopCoroutine(routine);
+
         if (optionIndex == -1)
         {
-
             SetTempAsQueue(AnswerResponses.noAnswer);
             return;
         }
@@ -135,6 +138,9 @@ public class DialogueReader : MonoBehaviour
 
     public void SubmitOption(string option)
     {
+        if (routine != null)
+            StopCoroutine(routine);
+
         string response = "";
         TypeAnswer leadsTo = (TypeAnswer)queuedDialogue.GetLeadsTo();
         DialogueBase return_val = leadsTo.ValidateAnswer(option, ref response);
@@ -197,7 +203,10 @@ public class DialogueReader : MonoBehaviour
 
     public void StartQuietTimer(DialogueType dialogueType)
     {
-        StartCoroutine(StartQuietTimerIEnumerator(dialogueType));
+        if (routine != null)
+            StopCoroutine(routine);
+
+        routine = StartCoroutine(StartQuietTimerIEnumerator(dialogueType));
     }
 
     private void ActivateTyping()

@@ -224,6 +224,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec794e5d26078854ea00b81bc7e5a5fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soundEFX:
+  - Guid:
+      Data1: -458043905
+      Data2: 1212665252
+      Data3: 1663315339
+      Data4: -2001541177
+    Path: event:/UI/Hover
+  - Guid:
+      Data1: -1959818674
+      Data2: 1252751485
+      Data3: 2070078601
+      Data4: 654750681
+    Path: event:/UI/Click
+  - Guid:
+      Data1: 1331449878
+      Data2: 1337139103
+      Data3: 582551460
+      Data4: 237583463
+    Path: event:/UI/Right
+  - Guid:
+      Data1: 75422643
+      Data2: 1106932660
+      Data3: 2103353233
+      Data4: 1722352260
+    Path: event:/UI/Wrong
+  - Guid:
+      Data1: 75422643
+      Data2: 1106932660
+      Data3: 2103353233
+      Data4: 1722352260
+    Path: event:/UI/Wrong
 --- !u!1 &1824551610
 GameObject:
   m_ObjectHideFlags: 0

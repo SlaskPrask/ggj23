@@ -17,6 +17,8 @@ public class AudioManager : MonoBehaviour
     private float musicVol;
     private float voiceVol;
 
+    public EventReference[] soundEFX;
+
     public void Initialize()
     {
         masterBus = RuntimeManager.GetBus("bus:/");
@@ -62,6 +64,20 @@ public class AudioManager : MonoBehaviour
     public static void SetVoice(float value)
     {
         GameManager.audio.voiceBus.setVolume(value);
+    }
+
+    public enum SoundClip : byte
+    {
+        HOVER = 0,
+        CLICK = 1,
+        CORRECT = 2,
+        WRONG = 3,
+        GAME_OVER = 4
+    }
+
+    public static void PlayAudio(SoundClip clip)
+    {
+        RuntimeManager.PlayOneShot(GameManager.audio.soundEFX[(byte)clip]);
     }
 
 }
