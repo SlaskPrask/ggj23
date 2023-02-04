@@ -18,6 +18,16 @@ namespace DialogueSystem
             dialogueType = DialogueType.MAIN;
         }
 
+        public void SetText(string str)
+        {
+            dialogue = str;
+        }
+
+        public void SetLeadsTo(DialogueBase dialogue)
+        {
+            SetLeads(dialogue);
+        }
+
         public override void Invoke(DialogueReader reader)
         {
             reader.PrintDialogue(this);

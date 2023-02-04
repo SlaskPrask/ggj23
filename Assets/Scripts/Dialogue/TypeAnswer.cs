@@ -27,7 +27,7 @@ namespace DialogueSystem
             }
             if (correctAnswer.ToLower() == answer.ToLower())
             {
-                return GetLeadsTo()[0];
+                return GetLeadsTo();
             }
 
             //Wrong answer

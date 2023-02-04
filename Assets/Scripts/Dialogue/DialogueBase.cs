@@ -15,13 +15,18 @@ namespace DialogueSystem
     {
         public DialogueType dialogueType { get; protected set; }
         [SerializeField]
-        private DialogueBase[] leadsTo;
+        private DialogueBase leadsTo;
+
+        protected void SetLeads(DialogueBase dialogue)
+        {
+            leadsTo = dialogue;
+        }
 
         public virtual void Invoke(DialogueReader reader) 
         { 
             Debug.LogError("Faulty invoke: " + name); 
         }
-        public DialogueBase[] GetLeadsTo()
+        public DialogueBase GetLeadsTo()
         {
             return leadsTo;
         }
