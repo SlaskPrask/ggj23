@@ -99,6 +99,10 @@
 
 .show-option {
     transition-property: opacity;
-    transition-duration: 0.5s;
+    transition-duration: 10s;
     opacity: 1;
+}
+
+.dialogue-continue {
+    width: 100%;
 }

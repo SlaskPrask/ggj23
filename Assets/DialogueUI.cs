@@ -71,7 +71,7 @@ public class DialogueUI : MonoBehaviour
     {
         optionsContainer.style.height = new StyleLength(StyleKeyword.Auto);
 
-        DialogueContinue continueElement = continueComponent, Instantiate<DialogueOption> (optionsContainer, gameObject);
+        DialogueOption continueElement = continueComponent.Instantiate<DialogueOption>(optionsContainer, gameObject);
     }
 
     public void SetOptions(string[] options)

@@ -178,9 +178,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6281627267762734750, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
-      propertyPath: textCharacterDelay
-      value: 0.02
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
