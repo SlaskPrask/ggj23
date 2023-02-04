@@ -22,19 +22,27 @@ namespace DialogueSystem
             throw new NotImplementedException();
         }
 
-        public DialogueBase ValidateAnswer(string answer)
+        public DialogueBase ValidateAnswer(string answer, ref string response)
         {
             if (string.IsNullOrWhiteSpace(answer))
             {
                 // Quiet
+                response = WrongAnswerResponses.noAnswer;
                 return null;
             }
             if (correctAnswer.ToLower() == answer.ToLower())
             {
                 return GetLeadsTo()[0];
             }
+
             //Wrong answer
+            response = WrongAnswerResponses.responses[UnityEngine.Random.Range(0, WrongAnswerResponses.responses.Length)];
             return null;
+        }
+
+        public string GetFirstLetterOfAnswer()
+        {
+            return correctAnswer.Substring(0, 1);
         }
     }
 }

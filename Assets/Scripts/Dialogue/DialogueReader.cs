@@ -11,6 +11,8 @@ public class DialogueReader : MonoBehaviour
     private DialogueBase queuedDialogue;
     [SerializeField]
     private DialogueUI dialogueUI;
+    private int responseAttempt = 0;
+    private string hint;
 
     private void Awake()
     {
@@ -118,7 +120,47 @@ public class DialogueReader : MonoBehaviour
 
     public void SubmitOption(string option)
     {
-        queuedDialogue = ((TypeAnswer)queuedDialogue).ValidateAnswer(option);
+        string response = "";
+        TypeAnswer leadsTo = (TypeAnswer)queuedDialogue.GetLeadsTo()[0];
+        DialogueBase return_val = leadsTo.ValidateAnswer(option, ref response);
+
+        if (return_val != null)
+        {
+            responseAttempt = 0;
+            hint = "";
+            queuedDialogue = return_val;
+            return;
+        }
+
+        responseAttempt++;
+
+        // Give Hint
+        if (responseAttempt >= 3)
+        {
+            hint = " It starts with a " + leadsTo.GetFirstLetterOfAnswer() + ".";
+        }
+
+        // Game Over
+        if (responseAttempt >= 6)
+        {
+            Debug.Log("TODO: You died");
+            return;
+        }
+
+
+        PrintDialogueText(response);
+    }
+
+    private void PrintDialogueText(string dialogue)
+    {
+        if (string.IsNullOrWhiteSpace(hint))
+        {
+            dialogueUI.PrintMain(dialogue);
+        }
+        else
+        {
+            dialogueUI.PrintMain(dialogue + hint);
+        }
     }
 
     private void PrintDialogueText(MainDialogue dialogue)
