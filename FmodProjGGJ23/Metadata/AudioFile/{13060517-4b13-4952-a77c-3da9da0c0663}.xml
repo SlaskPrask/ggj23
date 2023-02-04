@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{13060517-4b13-4952-a77c-3da9da0c0663}">
+		<property name="assetPath">
+			<value>cuckoo.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.43752834467120183</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{cd33480f-1bfb-4713-abc2-dcbd52047c45}</destination>
+		</relationship>
+	</object>
+</objects>
