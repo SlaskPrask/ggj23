@@ -14,6 +14,7 @@ public class DialogueUI : MonoBehaviour
     }
 
     public UIComponent optionComponent;
+    public UIComponent continueComponent;
     public float textCharacterDelay = 0.05f;
 
     private UIDocument uiDocument;
@@ -44,8 +45,6 @@ public class DialogueUI : MonoBehaviour
 
     void Start()
     {
-        PrintMain("i'm slask");
-        SetOptions(new string[] { "i'm slask", "i'm slask" });
     }
 
     public void PrintMain(string text)
@@ -70,6 +69,9 @@ public class DialogueUI : MonoBehaviour
 
     public void QueueNext()
     {
+        optionsContainer.style.height = new StyleLength(StyleKeyword.Auto);
+
+        DialogueContinue continueElement = continueComponent, Instantiate<DialogueOption> (optionsContainer, gameObject);
     }
 
     public void SetOptions(string[] options)
