@@ -16,11 +16,6 @@ namespace DialogueSystem
             dialogueType = DialogueType.PICK;
         }
 
-        public override void Invoke(DialogueReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
         public string GetParsedOption()
         {
             // TODO: Parse Option

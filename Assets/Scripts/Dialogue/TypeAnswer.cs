@@ -17,11 +17,6 @@ namespace DialogueSystem
             dialogueType = DialogueType.TYPE;
         }
 
-        public override void Invoke(DialogueReader reader)
-        {
-            throw new NotImplementedException();
-        }
-
         public DialogueBase ValidateAnswer(string answer, ref string response)
         {
             if (string.IsNullOrWhiteSpace(answer))
