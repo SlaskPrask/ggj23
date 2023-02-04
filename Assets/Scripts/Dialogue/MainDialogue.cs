@@ -4,48 +4,29 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Dialogue/Main Dialogue")]
-public class MainDialogue : DialogueBase
+namespace DialogueSystem
 {
-    [Multiline]
-    [SerializeField]
-    private string dialogue;
-    [SerializeField]
-    private DialogueBase[] dialogueOptions;
-
-    MainDialogue()
+    [CreateAssetMenu(menuName = "Dialogue/Main Dialogue")]
+    public class MainDialogue : DialogueBase
     {
-        dialogueType = DialogueType.MAIN;
-    }
+        [Multiline]
+        [SerializeField]
+        private string dialogue;
 
-    public string GetDialogue()
-    {
-        return dialogue;
-    }
-
-    public Tuple<DialogueType, string[]> GetOptions()
-    {
-        if (dialogueOptions.Length < 1)
+        MainDialogue()
         {
-            Debug.LogError("Dialogue has no options!");
-            return new Tuple<DialogueType, string[]>(DialogueType.NULL, null);
+            dialogueType = DialogueType.MAIN;
         }
 
-        if (dialogueOptions[0].dialogueType == DialogueType.OPTION_WRITE)
+        public override void Invoke(DialogueReader reader)
         {
-            return new Tuple<DialogueType, string[]>(DialogueType.OPTION_WRITE, null);
+            reader.PrintDialogue(this);
         }
 
-        string[] opt = new string[dialogueOptions.Length];
-        for (int i = 0; i < opt.Length; i++)
+        public string GetParsedDialogue()
         {
-            opt[i] = ((DialogueOptionChoise)dialogueOptions[i]).GetOption();
+            Debug.Log("TODO: parse dialogue!");
+            return dialogue;
         }
-        return new Tuple<DialogueType, string[]>(DialogueType.OPTION_WRITE, opt);
-    }
-    
-    public DialogueBase GetLeadsToFromOption(int option)
-    {
-        return ((DialogueOptionBase)dialogueOptions[option]).GetLeadsTo();
     }
 }
