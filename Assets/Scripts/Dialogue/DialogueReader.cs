@@ -73,7 +73,7 @@ public class DialogueReader : MonoBehaviour
                 QueueNext(leadsTo[0]);
                 break;
             case DialogueType.PICK:
-                SetOptions((PickOption[])leadsTo);
+                SetOptions(leadsTo);
                 break;
             case DialogueType.TYPE:
                 ActivateTyping();
@@ -132,12 +132,12 @@ public class DialogueReader : MonoBehaviour
         dialogueUI.QueueNext();
     }
 
-    public void SetOptions(PickOption[] options)
+    public void SetOptions(DialogueBase[] options)
     {
         string[] parsedOptions = new string[options.Length];
         for (int i = 0; i < options.Length; i++)
         {
-            parsedOptions[i] = options[i].GetParsedOption();
+            parsedOptions[i] = ((PickOption)options[i]).GetParsedOption();
         }
         dialogueUI.SetOptions(parsedOptions);
     }
