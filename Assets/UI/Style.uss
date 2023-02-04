@@ -99,4 +99,5 @@
 
 .dialogue-continue {
     width: 100%;
+    color: rgba(255, 255, 255, 255);
 }
