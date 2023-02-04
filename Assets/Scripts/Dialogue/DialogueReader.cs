@@ -9,6 +9,7 @@ public class DialogueReader : MonoBehaviour
     [SerializeField]
     private DialogueBase startDialogue;
     private DialogueBase queuedDialogue;
+    private DialogueUI dialogueUI;
 
     private void Awake()
     {

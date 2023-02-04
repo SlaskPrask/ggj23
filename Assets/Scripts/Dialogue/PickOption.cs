@@ -20,5 +20,11 @@ namespace DialogueSystem
         {
             throw new NotImplementedException();
         }
+
+        public string GetParsedOption()
+        {
+            // TODO: Parse Option
+            return optionText;
+        }
     }
 }
