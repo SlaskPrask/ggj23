@@ -161,3 +161,29 @@
 
 .timer-cursor {
 }
+
+.volume-slider-container {
+}
+
+.volume-slider {
+    width: 100px;
+}
+
+.volume-slider .unity-label {
+    position: absolute;
+    left: -55px;
+}
+
+.volume-slider .unity-slider__input {
+}
+
+.main-menu-button {
+    width: 50%;
+    margin-top: 15px;
+    padding-top: 5px;
+}
+
+.main-menu-button .unity-label {
+    font-size: 25px;
+    color: rgba(185, 185, 185, 255);
+}
