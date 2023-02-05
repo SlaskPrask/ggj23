@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class DialogueUI : MonoBehaviour
@@ -16,11 +17,13 @@ public class DialogueUI : MonoBehaviour
     public UIComponent optionComponent;
     public UIComponent continueComponent;
     public UIComponent inputComponent;
+    public UIComponent timerComponent;
     public DialogueReader reader;
     public float textCharacterDelay = 0.05f;
 
     private UIDocument uiDocument;
-    private Label dialogueFullText;
+    private int textPosition;
+    private string currentText = "";
     private Label dialogueText;
     private VisualElement optionsContainer;
     private VisualElement dialogueBox;
@@ -30,6 +33,7 @@ public class DialogueUI : MonoBehaviour
     private DialoguePhase phase;
     private static WaitForSeconds WAIT_HALF = new WaitForSeconds(0.5f);
     private bool noSubmit;
+    private DialogueTimer timer;
 
     void Awake()
     {
@@ -37,7 +41,6 @@ public class DialogueUI : MonoBehaviour
         uiDocument = GetComponent<UIDocument>();
 
         dialogueBox = uiDocument.rootVisualElement.Query("dialogue");
-        dialogueFullText = uiDocument.rootVisualElement.Query<Label>("dialogue-text-full");
         dialogueText = uiDocument.rootVisualElement.Query<Label>("dialogue-text-scroll");
         optionsContainer = uiDocument.rootVisualElement.Query("options");
 
@@ -46,17 +49,15 @@ public class DialogueUI : MonoBehaviour
         uiDocument.rootVisualElement.AddManipulator(new Clickable(e => { ProgressDialogue(); }));
     }
 
-    void Start()
-    {
-    }
-
     public void PrintMain(string text)
     {
+        RemoveTimer();
         dialogueBox.RemoveFromClassList("full-size");
 
         noSubmit = false;
         optionsContainer.Clear();
-        dialogueFullText.text = text;
+        currentText = text;
+        textPosition = 0;
         dialogueText.text = "";
 
         if (scroll != null)
@@ -78,6 +79,7 @@ public class DialogueUI : MonoBehaviour
 
     public void SetOptions(string[] options)
     {
+        StartTimer();
         for (int i = 0; i < options.Length; i++)
         {
             {
@@ -89,16 +91,18 @@ public class DialogueUI : MonoBehaviour
 
     public void SetTyping()
     {
+        StartTimer();
         DialogueTextInput textElement = inputComponent.Instantiate<DialogueTextInput>(optionsContainer, gameObject);
         textElement.SetUp(this);
     }
 
     private IEnumerator ScrollText()
     {
-        while (dialogueText.text.Length < dialogueFullText.text.Length)
+        while (textPosition < currentText.Length)
         {
+            dialogueText.text = currentText.Substring(0, textPosition) + "<color=#00000000>" + currentText.Substring(textPosition) + "</color>";
+            textPosition++;
             yield return textAppearDelay;
-            dialogueText.text += dialogueFullText.text[dialogueText.text.Length];
         }
 
         scroll = null;
@@ -145,7 +149,7 @@ public class DialogueUI : MonoBehaviour
     {
         phase = DialoguePhase.ShowOptions;
 
-        dialogueText.text = dialogueFullText.text;
+        dialogueText.text = currentText;
         if (scroll != null)
         {
             StopCoroutine(scroll);
@@ -171,6 +175,23 @@ public class DialogueUI : MonoBehaviour
         yield return WAIT_HALF;
         phase = DialoguePhase.Ready;
         optionShowing = null;
+    }
+
+    private void RemoveTimer()
+    {
+        if (timer)
+        {
+            timer.remove();
+            timer = null;
+        }
+    }
+
+    private void StartTimer()
+    {
+        RemoveTimer();
+
+        timer = timerComponent.Instantiate<DialogueTimer>(dialogueBox, gameObject);
+        timer.SetUp(reader.GetTimerNormalized);
     }
 
     public void SelectOption(int option)
@@ -205,13 +226,26 @@ public class DialogueUI : MonoBehaviour
         reader.AdvanceDialogue();
     }
 
-    public void GameOver()
+    public void OnKeyboardAccept(InputAction.CallbackContext value)
     {
-
+        if (value.performed)
+        {
+            ProgressDialogue();
+        }
     }
 
-    public void LoadScene()
+    public void OnKeyboardBack(InputAction.CallbackContext value)
     {
+        if (value.performed)
+        {
+        }
+    }
 
+    public void GameOver(AsyncOperation sceneAsync)
+    {
+    }
+
+    public void LoadScene(AsyncOperation sceneAsync)
+    {
     }
 }

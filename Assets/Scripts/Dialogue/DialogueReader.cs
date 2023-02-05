@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DialogueSystem;
-
+using UnityEngine.SceneManagement;
 
 public class DialogueReader : MonoBehaviour
 {
@@ -16,6 +16,8 @@ public class DialogueReader : MonoBehaviour
     private DialogueUI dialogueUI;
     private int responseAttempt = 0;
     private string hint;
+    private int currentScene;
+
 
     private MainDialogue tempDialogue;
     Coroutine routine;
@@ -30,6 +32,8 @@ public class DialogueReader : MonoBehaviour
 
         tempDialogue = MainDialogue.CreateInstance<MainDialogue>();
         queuedDialogue = startDialogue;
+        currentScene = SceneManager.GetActiveScene().buildIndex;
+        quietTimer = quietTime;
     }
 
     private void Start()
@@ -88,7 +92,7 @@ public class DialogueReader : MonoBehaviour
                 GameOver();
                 break;
             case SpecialEvent.GameEvent.LOAD_SCENE:
-                LoadScene();
+                NextScene();
                 break;
             default:
                 break;
@@ -216,12 +220,22 @@ public class DialogueReader : MonoBehaviour
 
     private void GameOver()
     {
-        dialogueUI.GameOver();
+        AsyncOperation sceneLoad = LoadScene(currentScene);
+        AudioManager.PlayAudio(AudioManager.SoundClip.GAME_OVER);
+        dialogueUI.GameOver(sceneLoad);
     }
 
-    private void LoadScene()
+    private void NextScene()
     {
-        dialogueUI.LoadScene();
+        AsyncOperation sceneLoad = LoadScene(currentScene + 1);
+        dialogueUI.LoadScene(sceneLoad);
+    }
+
+    private AsyncOperation LoadScene(int index)
+    {
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(index);
+        loadScene.allowSceneActivation = false;
+        return loadScene;
     }
 
     private IEnumerator StartQuietTimerIEnumerator(DialogueType dialogueType)
