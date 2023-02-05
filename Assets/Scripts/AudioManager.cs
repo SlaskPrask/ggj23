@@ -17,7 +17,11 @@ public class AudioManager : MonoBehaviour
     private float musicVol;
     private float voiceVol;
 
+    private StudioEventEmitter emitter;
+
     public EventReference[] soundEFX;
+    public EventReference[] music;
+    public EventReference[] voice;
 
     public void Initialize()
     {
@@ -34,6 +38,8 @@ public class AudioManager : MonoBehaviour
         SetSFX(sfxVol);
         SetMusic(musicVol);
         SetVoice(voiceVol);
+    
+        emitter = GetComponent<StudioEventEmitter>();
     }
 
     public static void SaveSettings()
@@ -71,13 +77,34 @@ public class AudioManager : MonoBehaviour
         HOVER = 0,
         CLICK = 1,
         CORRECT = 2,
-        WRONG = 3,
-        GAME_OVER = 4
+        WRONG = 3
     }
 
     public static void PlayAudio(SoundClip clip)
     {
         RuntimeManager.PlayOneShot(GameManager.audio.soundEFX[(byte)clip]);
+    }
+
+    public enum MusicID : byte
+    {
+        CHAPTER_1 = 0,
+        CHAPTER_2 = 1,
+        CHAPTER_3 = 2,
+        GAME_OVER = 4,
+    }
+
+    public static void PlayMusic(MusicID id)
+    {
+        StudioEventEmitter emitter = GameManager.audio.emitter;
+
+        if (emitter.IsPlaying())
+        {
+            emitter.AllowFadeout = (id == MusicID.GAME_OVER);
+            emitter.Stop();
+        }
+
+        emitter.EventReference = GameManager.audio.music[(byte)id];
+        emitter.Play();
     }
 
 }

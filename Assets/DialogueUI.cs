@@ -212,6 +212,6 @@ public class DialogueUI : MonoBehaviour
 
     public void LoadScene(AsyncOperation sceneAsync)
     {
-
+               
     }
 }
