@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{319187b4-df0a-441c-9b85-145e3376b639}">
+	<object class="AudioFile" id="{d34163aa-977e-4e62-bbae-3d6cd5ff990f}">
 		<property name="assetPath">
-			<value>tap.wav</value>
+			<value>error.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,10 +11,10 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>0.3125170068027211</value>
+			<value>0.26058956916099774</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{cd33480f-1bfb-4713-abc2-dcbd52047c45}</destination>
+			<destination>{d9aea8e0-7012-4757-8a7f-756ca1036207}</destination>
 		</relationship>
 	</object>
 </objects>

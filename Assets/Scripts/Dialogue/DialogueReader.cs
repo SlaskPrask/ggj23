@@ -18,7 +18,7 @@ public class DialogueReader : MonoBehaviour
     private string hint;
     private int currentScene;
 
-
+    private AudioManager.Mood queuedMood;
     private MainDialogue tempDialogue;
     private SpecialEvent gameOverDialogue;
     Coroutine routine;
@@ -42,6 +42,8 @@ public class DialogueReader : MonoBehaviour
         queuedDialogue = startDialogue;
         currentScene = SceneManager.GetActiveScene().buildIndex;
         quietTimer = quietTime;
+
+        AudioManager.PlayMusic(AudioManager.MusicID.CHAPTER_1);
     }
 
     private void Start()
@@ -60,6 +62,9 @@ public class DialogueReader : MonoBehaviour
     public void PrintDialogue(MainDialogue dialogue)
     {
         PrintDialogueText(dialogue);
+        PlayVoice(queuedMood);
+        queuedMood = AudioManager.Mood.NEUTRAL;
+
         DialogueBase leadsTo = dialogue.GetLeadsTo();
 
         if (leadsTo == null)
@@ -140,7 +145,7 @@ public class DialogueReader : MonoBehaviour
 
         if (optionIndex == -1)
         {
-            SetTempAsQueue(AnswerResponses.noAnswer, queuedDialogue);
+            GameOver();
             return;
         }
 
@@ -155,6 +160,7 @@ public class DialogueReader : MonoBehaviour
         if (option.CheckCorrectAnswer(optionIndex))
         {
             SetTempAsQueue(AnswerResponses.correctAnswer, leadsTo);
+            queuedMood = AudioManager.Mood.GOOD;
         }
         else
         {
@@ -175,6 +181,7 @@ public class DialogueReader : MonoBehaviour
             responseAttempt = 0;
             hint = "";
             SetTempAsQueue(response, leadsTo.GetLeadsTo());
+            queuedMood = AudioManager.Mood.GOOD; 
             return;
         }
 
@@ -193,6 +200,7 @@ public class DialogueReader : MonoBehaviour
             return;
         }
 
+        queuedMood = AudioManager.Mood.BAD;
         SetTempAsQueue(response, queuedDialogue);
     }
 
@@ -241,6 +249,7 @@ public class DialogueReader : MonoBehaviour
 
     private void GameOver()
     {
+        queuedMood = AudioManager.Mood.BAD;
         SetTempAsQueue(AnswerResponses.wrongAnswer, gameOverDialogue);
     }
 
@@ -284,5 +293,14 @@ public class DialogueReader : MonoBehaviour
     public float GetTimerNormalized()
     {
         return quietTimer / quietTime;
+    }
+
+    private void PlayVoice(AudioManager.Mood mood)
+    {
+        byte character = (byte)(currentScene - 1);
+        if (character > 2)
+            return;
+
+        AudioManager.PlayVoice(mood, character);
     }
 }

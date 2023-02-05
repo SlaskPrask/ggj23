@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{cffef52a-3503-4a98-ae3c-3cf171d2adcf}">
-		<property name="assetPath">
-			<value>draw.wav</value>
-		</property>
+	<object class="AudioFile" id="{13060517-4b13-4952-a77c-3da9da0c0663}">
+		<property name="assetPath" />
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
 		</property>
@@ -11,10 +9,10 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>0.1875283446712018</value>
+			<value>0.43752834467120183</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{cd33480f-1bfb-4713-abc2-dcbd52047c45}</destination>
+			<destination>{d9aea8e0-7012-4757-8a7f-756ca1036207}</destination>
 		</relationship>
 	</object>
 </objects>
