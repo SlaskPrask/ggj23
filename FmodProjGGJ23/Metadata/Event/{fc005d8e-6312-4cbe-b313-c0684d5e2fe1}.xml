@@ -92,7 +92,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{99bdb23b-0d7a-4783-b0b3-a4a54d60f5d1}">
 		<property name="volume">
-			<value>7.5</value>
+			<value>10</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{e5edf185-343e-4c0a-814a-acfa5c91bdb6}</destination>
@@ -128,6 +128,9 @@
 		<property name="length">
 			<value>0.10000000000000001</value>
 		</property>
+		<property name="volume">
+			<value>5</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{cdf1ac24-4b76-45ee-b9a5-8a1edeacea12}</destination>
 		</relationship>
@@ -146,6 +149,9 @@
 		<property name="length">
 			<value>0.099999999999999756</value>
 		</property>
+		<property name="volume">
+			<value>5</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{83023506-9d30-46a2-821b-368e1d5b3afb}</destination>
 		</relationship>
@@ -160,6 +166,9 @@
 		</property>
 		<property name="length">
 			<value>0.10000000000000001</value>
+		</property>
+		<property name="volume">
+			<value>5</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{81ff703a-8d49-405d-8ae2-8c972b472978}</destination>

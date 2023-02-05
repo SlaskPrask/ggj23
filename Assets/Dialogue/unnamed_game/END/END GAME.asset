@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
   m_Name: END GAME
   m_EditorClassIdentifier: 
-  leadsTo: {fileID: 0}
+  leadsTo: {fileID: 11400000, guid: e6c55024cccb29142aafde1b3b621f8c, type: 2}
   dialogue: You have reached the Core. You feel yourself dissolve as you are absorbed
     in its Eternal Void.

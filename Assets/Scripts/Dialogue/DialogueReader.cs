@@ -46,16 +46,6 @@ public class DialogueReader : MonoBehaviour
         AudioManager.PlayMusic(AudioManager.MusicID.CHAPTER_1);
     }
 
-    private void Start()
-    {
-#if DEBUG
-        if (testing)
-        {
-            AdvanceDialogue();
-        }
-#endif
-    }
-
     /// <summary>
     /// This is called by the main dialogue
     /// </summary>
@@ -302,7 +292,8 @@ public class DialogueReader : MonoBehaviour
     private void PlayVoice(AudioManager.Mood mood)
     {
         byte character = (byte)(currentScene - 1);
-        if (character > 2)
+
+        if (character > 2 || character < 0)
             return;
 
         AudioManager.PlayVoice(mood, character);

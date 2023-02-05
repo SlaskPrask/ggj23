@@ -353,7 +353,7 @@ MonoBehaviour:
   sourceProjectPath: FmodProjGGJ23/FmodProjGGJ23.fspro
   sourceBankPath: Assets/AudioBuild
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 1
   BankLoadType: 0
