@@ -10,8 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a68037aeb0d6dae4abe1a5c54bcaa95b, type: 3}
-  m_Name: W1
+  m_Name: Q1AA
   m_EditorClassIdentifier: 
-  leadsTo: {fileID: 11400000, guid: fec337a3dadde3049a105909218e95e3, type: 2}
-  dialogue: 'Welcome to my area, on your journey to the root! You must be tired after
-    answering all the riddles of that fool. '
+  leadsTo: {fileID: 11400000, guid: 4ad4b85b87fe5a74280e3103da607528, type: 2}
+  dialogue: You need to remember in order to get out.
