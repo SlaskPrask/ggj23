@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DialogueSystem;
 using UnityEngine.SceneManagement;
+using static AudioManager;
 
 public class DialogueReader : MonoBehaviour
 {
@@ -260,8 +261,9 @@ public class DialogueReader : MonoBehaviour
         dialogueUI.LoadScene(sceneLoad);
     }
 
-    private void MainMenu()
+    public void MainMenu()
     {
+        PlayMusic(MusicID.DRIPPING);
         queuedDialogue = null;
         AsyncOperation sceneLoad = LoadScene(0);
         dialogueUI.LoadScene(sceneLoad);
