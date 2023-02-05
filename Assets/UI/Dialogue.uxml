@@ -1,6 +1,17 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Style.uss?fileID=7433441132597879392&amp;guid=0c4982791bfade044810a98853e43250&amp;type=3#Style" />
     <ui:VisualElement name="dialogue-ui" class="fit" style="justify-content: flex-end;">
+        <ui:VisualElement name="menu" style="position: absolute; left: 0; top: 0; display: none;">
+            <ui:VisualElement name="quit-to-menu" class="button" style="padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; margin-left: 10px; margin-top: 5px; margin-bottom: 5px;">
+                <ui:Label text="Exit" display-tooltip-when-elided="true" style="-unity-text-align: upper-center; color: rgba(255, 255, 255, 255);" />
+            </ui:VisualElement>
+            <ui:VisualElement class="volume-slider-container" style="margin-left: 70px;">
+                <ui:Slider picking-mode="Ignore" label="Master" value="42" high-value="100" name="volume-master" class="volume-slider" />
+                <ui:Slider picking-mode="Ignore" label="Music" value="42" high-value="100" name="volume-music" class="volume-slider" />
+                <ui:Slider picking-mode="Ignore" label="Sounds" value="42" high-value="100" name="volume-sounds" class="volume-slider" />
+                <ui:Slider picking-mode="Ignore" label="Voice" value="42" high-value="100" name="volume-voice" class="volume-slider" />
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="dialogue" class="dialogue" style="width: 100%;">
             <ui:VisualElement name="dialogue-background" class="dialogue-background">
                 <ui:VisualElement name="dialogue-background-top" class="dialogue-background-top" style="background-image: url(&apos;project://database/Assets/Graphics/UI/gradient.png?fileID=2800000&amp;guid=833aa3335155ae040b2f302e33cbdae2&amp;type=3#gradient&apos;);" />

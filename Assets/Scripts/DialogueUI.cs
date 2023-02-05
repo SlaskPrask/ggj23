@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DialogueSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class DialogueUI : MonoBehaviour
@@ -40,6 +41,7 @@ public class DialogueUI : MonoBehaviour
     private bool noSubmit;
     private DialogueTimer timer;
     private AsyncOperation gameOverAction;
+    private VisualElement menu;
 
     void Awake()
     {
@@ -56,6 +58,23 @@ public class DialogueUI : MonoBehaviour
 
         VisualElement fullUI = uiDocument.rootVisualElement.Query("dialogue-ui");
         fullUI.RegisterCallback<ClickEvent>(optionsContinue, TrickleDown.TrickleDown);
+
+        VisualElement quit = uiDocument.rootVisualElement.Query("quit-to-menu");
+        UIInputs.Button(quit, () => { SceneManager.LoadScene(0); });
+
+        SetupSlider("volume-master", () => AudioManager.masterVol, AudioManager.SetMaster);
+        SetupSlider("volume-music", () => AudioManager.musicVol, AudioManager.SetMusic);
+        SetupSlider("volume-sounds", () => AudioManager.sfxVol, AudioManager.SetSFX);
+        SetupSlider("volume-voice", () => AudioManager.voiceVol, AudioManager.SetVoice);
+
+        menu = uiDocument.rootVisualElement.Query("menu");
+    }
+
+    private void SetupSlider(string name, Func<float> getter, Action<float> setter)
+    {
+        Slider slider = uiDocument.rootVisualElement.Query<Slider>(name);
+        slider.value = getter() * 100.0f;
+        slider.RegisterValueChangedCallback(e => { setter(e.newValue / 100.0f); });
     }
 
     private void startDialogue()
@@ -183,13 +202,18 @@ public class DialogueUI : MonoBehaviour
             option.AddToClassList("show-option");
         }
 
+        FocusText();
+
+        StartCoroutine(optionShowing = DialogueDone());
+    }
+
+    private void FocusText()
+    {
         TextField textField = uiDocument.rootVisualElement.Query<TextField>(null, "unity-text-field");
         if (textField != null)
         {
             textField.Focus();
         }
-
-        StartCoroutine(optionShowing = DialogueDone());
     }
 
     private IEnumerator DialogueDone()
@@ -198,11 +222,7 @@ public class DialogueUI : MonoBehaviour
         phase = DialoguePhase.Ready;
         optionShowing = null;
 
-        TextField textField = uiDocument.rootVisualElement.Query<TextField>(null, "unity-text-field");
-        if (textField != null)
-        {
-            textField.Focus();
-        }
+        FocusText();
     }
 
     private void RemoveTimer()
@@ -272,6 +292,14 @@ public class DialogueUI : MonoBehaviour
     {
         if (value.performed)
         {
+            if (menu.style.display == DisplayStyle.None)
+            {
+                menu.style.display = DisplayStyle.Flex;
+            }
+            else
+            {
+                menu.style.display = DisplayStyle.None;
+            }
         }
     }
 
