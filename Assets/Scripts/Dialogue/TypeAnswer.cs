@@ -17,22 +17,25 @@ namespace DialogueSystem
             dialogueType = DialogueType.TYPE;
         }
 
-        public DialogueBase ValidateAnswer(string answer, ref string response)
+        public bool ValidateAnswer(string answer, ref string response)
         {
+            if (correctAnswer.ToLower() == answer.ToLower())
+            {
+                response = AnswerResponses.correctAnswer;
+                return true;
+            }
+
             if (string.IsNullOrWhiteSpace(answer))
             {
                 // Quiet
                 response = AnswerResponses.noAnswer;
-                return null;
             }
-            if (correctAnswer.ToLower() == answer.ToLower())
+            else
             {
-                return GetLeadsTo();
+                // Wrong answer
+                response = AnswerResponses.correctAnswer;
             }
-
-            //Wrong answer
-            response = AnswerResponses.wrongResponses[UnityEngine.Random.Range(0, AnswerResponses.wrongResponses.Length)];
-            return null;
+            return false;
         }
 
         public string GetFirstLetterOfAnswer()

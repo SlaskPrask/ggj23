@@ -38,6 +38,7 @@ public class DialogueReader : MonoBehaviour
 
         tempDialogue = MainDialogue.CreateInstance<MainDialogue>();
         gameOverDialogue = SpecialEvent.CreateInstance<SpecialEvent>();
+        gameOverDialogue.SetEvent(SpecialEvent.GameEvent.GAME_OVER);
         queuedDialogue = startDialogue;
         currentScene = SceneManager.GetActiveScene().buildIndex;
         quietTimer = quietTime;
@@ -101,7 +102,12 @@ public class DialogueReader : MonoBehaviour
         switch (eventType)
         {
             case SpecialEvent.GameEvent.GAME_OVER:
-                GameOver();
+                {
+                    queuedDialogue = null;
+                    AsyncOperation sceneLoad = LoadScene(currentScene);
+                    AudioManager.PlayMusic(AudioManager.MusicID.GAME_OVER);
+                    dialogueUI.GameOver(sceneLoad);
+                }
                 break;
             case SpecialEvent.GameEvent.LOAD_SCENE:
                 NextScene();
@@ -134,7 +140,7 @@ public class DialogueReader : MonoBehaviour
 
         if (optionIndex == -1)
         {
-            SetTempAsQueue(AnswerResponses.noAnswer);
+            SetTempAsQueue(AnswerResponses.noAnswer, queuedDialogue);
             return;
         }
 
@@ -148,8 +154,7 @@ public class DialogueReader : MonoBehaviour
 
         if (option.CheckCorrectAnswer(optionIndex))
         {
-            queuedDialogue = leadsTo;
-            SetTempAsQueue(AnswerResponses.correctResponses[Random.Range(0, AnswerResponses.correctResponses.Length)]);
+            SetTempAsQueue(AnswerResponses.correctAnswer, leadsTo);
         }
         else
         {
@@ -162,15 +167,14 @@ public class DialogueReader : MonoBehaviour
         if (routine != null)
             StopCoroutine(routine);
 
-        string response = "";
         TypeAnswer leadsTo = (TypeAnswer)queuedDialogue.GetLeadsTo();
-        DialogueBase return_val = leadsTo.ValidateAnswer(option, ref response);
+        string response = "";
 
-        if (return_val != null)
+        if (leadsTo.ValidateAnswer(option, ref response))
         {
             responseAttempt = 0;
             hint = "";
-            queuedDialogue = return_val;
+            SetTempAsQueue(response, leadsTo.GetLeadsTo());
             return;
         }
 
@@ -189,13 +193,13 @@ public class DialogueReader : MonoBehaviour
             return;
         }
 
-        SetTempAsQueue(response);
+        SetTempAsQueue(response, queuedDialogue);
     }
 
-    private void SetTempAsQueue(string dialogue)
+    private void SetTempAsQueue(string dialogue, DialogueBase leadsTo)
     {
         tempDialogue.SetText(dialogue);
-        tempDialogue.SetLeadsTo(queuedDialogue);
+        tempDialogue.SetLeadsTo(leadsTo);
         queuedDialogue = tempDialogue;
     }
 
@@ -237,10 +241,7 @@ public class DialogueReader : MonoBehaviour
 
     private void GameOver()
     {
-        queuedDialogue = null;
-        AsyncOperation sceneLoad = LoadScene(currentScene);
-        AudioManager.PlayMusic(AudioManager.MusicID.GAME_OVER);
-        dialogueUI.GameOver(sceneLoad);
+        SetTempAsQueue(AnswerResponses.wrongAnswer, gameOverDialogue);
     }
 
     private void NextScene()

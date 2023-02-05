@@ -7,7 +7,7 @@ using static UnityEngine.Rendering.DebugUI.Table;
 
 public static class AnswerResponses
 {
-    public static string[] wrongResponses = new string[]
+    private static string[] wrongResponses = new string[]
     {
         "No.",
         "Try again.",
@@ -16,7 +16,7 @@ public static class AnswerResponses
         "Are you even trying?"
     };
 
-    public static string[] correctResponses = new string[]
+    private static string[] correctResponses = new string[]
     {
         "Right!",
         "Yes!",
@@ -26,4 +26,21 @@ public static class AnswerResponses
     };
 
     public const string noAnswer = "Why are you so quiet?";
+    public static string wrongAnswer 
+    { 
+        get 
+        {
+            return wrongResponses[UnityEngine.Random.Range(0, wrongResponses.Length)];
+        } 
+    }
+
+    public static string correctAnswer
+    {
+        get
+        {
+            return correctResponses[UnityEngine.Random.Range(0, correctResponses.Length)];
+        }
+    }
+    
+
 }

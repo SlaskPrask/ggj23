@@ -90,7 +90,7 @@ public class AudioManager : MonoBehaviour
         CHAPTER_1 = 0,
         CHAPTER_2 = 1,
         CHAPTER_3 = 2,
-        GAME_OVER = 4,
+        GAME_OVER = 3,
     }
 
     public static void PlayMusic(MusicID id)
