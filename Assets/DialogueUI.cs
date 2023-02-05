@@ -205,12 +205,12 @@ public class DialogueUI : MonoBehaviour
         reader.AdvanceDialogue();
     }
 
-    public void GameOver()
+    public void GameOver(AsyncOperation sceneAsync)
     {
 
     }
 
-    public void LoadScene()
+    public void LoadScene(AsyncOperation sceneAsync)
     {
 
     }
