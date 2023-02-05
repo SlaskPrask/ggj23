@@ -19,8 +19,7 @@ public static class AnswerResponses
     private static string[] correctResponses = new string[]
     {
         "Right!",
-        "Yes!",
-        "Okay.",
+        "Yes.",
         "Next!",
         "Hmm, I see..."
     };

@@ -33,7 +33,7 @@ namespace DialogueSystem
             else
             {
                 // Wrong answer
-                response = AnswerResponses.correctAnswer;
+                response = AnswerResponses.wrongAnswer;
             }
             return false;
         }
