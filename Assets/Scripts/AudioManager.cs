@@ -21,10 +21,10 @@ public class AudioManager : MonoBehaviour
 
     public void Initialize()
     {
-        masterBus = RuntimeManager.GetBus("bus:/");
-        SFXBus = RuntimeManager.GetBus("bus:/SoundEFX");
-        musicBus = RuntimeManager.GetBus("bus:/Music");
-        voiceBus = RuntimeManager.GetBus("bus:/Voices");
+        masterBus = RuntimeManager.GetBus("bus:/Master");
+        SFXBus = RuntimeManager.GetBus("bus:/Master/SoundFX");
+        musicBus = RuntimeManager.GetBus("bus:/Master/Music");
+        voiceBus = RuntimeManager.GetBus("bus:/Master/Voice");
 
         masterVol = (PlayerPrefs.GetFloat("master-bus", .5f));
         sfxVol = (PlayerPrefs.GetFloat("sfx-bus", .5f));
