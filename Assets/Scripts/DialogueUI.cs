@@ -60,7 +60,7 @@ public class DialogueUI : MonoBehaviour
         fullUI.RegisterCallback<ClickEvent>(optionsContinue, TrickleDown.TrickleDown);
 
         VisualElement quit = uiDocument.rootVisualElement.Query("quit-to-menu");
-        UIInputs.Button(quit, () => { SceneManager.LoadScene(0); });
+        UIInputs.Button(quit, () => { reader.MainMenu(); });
 
         SetupSlider("volume-master", () => AudioManager.masterVol, AudioManager.SetMaster);
         SetupSlider("volume-music", () => AudioManager.musicVol, AudioManager.SetMusic);
