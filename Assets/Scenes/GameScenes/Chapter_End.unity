@@ -191,6 +191,18 @@ PrefabInstance:
       propertyPath: image
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 419959622, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
+      propertyPath: color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419959622, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
+      propertyPath: color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 419959622, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
+      propertyPath: color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1358932577560494716, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
       propertyPath: m_Name
       value: Game
