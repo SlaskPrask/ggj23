@@ -159,8 +159,9 @@ public class DialogueReader : MonoBehaviour
 
         if (option.CheckCorrectAnswer(optionIndex))
         {
-            SetTempAsQueue(AnswerResponses.correctAnswer, leadsTo);
             queuedMood = AudioManager.Mood.GOOD;
+            AudioManager.PlayAudio(AudioManager.SoundClip.CORRECT);
+            SetTempAsQueue(AnswerResponses.correctAnswer, leadsTo);
         }
         else
         {
@@ -181,7 +182,8 @@ public class DialogueReader : MonoBehaviour
             responseAttempt = 0;
             hint = "";
             SetTempAsQueue(response, leadsTo.GetLeadsTo());
-            queuedMood = AudioManager.Mood.GOOD; 
+            queuedMood = AudioManager.Mood.GOOD;
+            AudioManager.PlayAudio(AudioManager.SoundClip.CORRECT);
             return;
         }
 
@@ -201,6 +203,7 @@ public class DialogueReader : MonoBehaviour
         }
 
         queuedMood = AudioManager.Mood.BAD;
+        AudioManager.PlayAudio(AudioManager.SoundClip.WRONG);
         SetTempAsQueue(response, queuedDialogue);
     }
 
@@ -249,6 +252,7 @@ public class DialogueReader : MonoBehaviour
 
     private void GameOver()
     {
+        AudioManager.PlayAudio(AudioManager.SoundClip.WRONG);
         queuedMood = AudioManager.Mood.BAD;
         SetTempAsQueue(AnswerResponses.wrongAnswer, gameOverDialogue);
     }
