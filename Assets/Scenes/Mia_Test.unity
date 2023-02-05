@@ -194,7 +194,7 @@ PrefabInstance:
     - target: {fileID: 4490435938793449773, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
       propertyPath: startDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 60559617209cf4548b252b7b4980761b, type: 2}
+      objectReference: {fileID: 11400000, guid: 9d5a933765278614ebf0b7df46b01463, type: 2}
     - target: {fileID: 5523349568507166485, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
       propertyPath: m_RootOrder
       value: 0
