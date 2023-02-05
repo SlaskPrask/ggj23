@@ -11,9 +11,7 @@ public class DialogueTextInput : UIBehaviour
     public override void InitUI(VisualElement element)
     {
         VisualElement button = element.Query("dialogue-submit");
-        button.AddManipulator(new Clickable(
-            e => { Submit(); }
-        ));
+        UIInputs.Button(button, () => { Submit(); });
 
         textField = element.Query<TextField>("dialogue-text-field");
         textField.RegisterCallback<KeyDownEvent>(e =>

@@ -13,7 +13,8 @@ public class DialogueUI : MonoBehaviour
         Unavailable,
         MainText,
         ShowOptions,
-        Ready
+        Ready,
+        GameOver
     }
 
     public UIComponent optionComponent;
@@ -23,6 +24,7 @@ public class DialogueUI : MonoBehaviour
     public DialogueReader reader;
     public float textCharacterDelay = 0.05f;
     public SceneTransition transition;
+    public GameOver gameOver;
 
     private UIDocument uiDocument;
     private int textPosition;
@@ -37,6 +39,7 @@ public class DialogueUI : MonoBehaviour
     private static WaitForSeconds WAIT_HALF = new WaitForSeconds(0.5f);
     private bool noSubmit;
     private DialogueTimer timer;
+    private AsyncOperation gameOverAction;
 
     void Awake()
     {
@@ -51,7 +54,8 @@ public class DialogueUI : MonoBehaviour
 
         phase = DialoguePhase.Unavailable;
 
-        uiDocument.rootVisualElement.AddManipulator(new Clickable(e => { ProgressDialogue(); }));
+        VisualElement fullUI = uiDocument.rootVisualElement.Query("dialogue-ui");
+        fullUI.RegisterCallback<ClickEvent>(optionsContinue, TrickleDown.TrickleDown);
     }
 
     private void startDialogue()
@@ -151,6 +155,13 @@ public class DialogueUI : MonoBehaviour
                 }
 
                 break;
+            case DialoguePhase.GameOver:
+                Debug.Log("game over ok");
+                phase = DialoguePhase.Unavailable;
+                transition.Transition(() => { gameOverAction.allowSceneActivation = true; });
+                break;
+            case DialoguePhase.Unavailable:
+                break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
@@ -186,6 +197,12 @@ public class DialogueUI : MonoBehaviour
         yield return WAIT_HALF;
         phase = DialoguePhase.Ready;
         optionShowing = null;
+
+        TextField textField = uiDocument.rootVisualElement.Query<TextField>(null, "unity-text-field");
+        if (textField != null)
+        {
+            textField.Focus();
+        }
     }
 
     private void RemoveTimer()
@@ -215,6 +232,11 @@ public class DialogueUI : MonoBehaviour
 
         reader.SelectOption(option);
         reader.AdvanceDialogue();
+    }
+
+    private void optionsContinue(ClickEvent e)
+    {
+        ProgressDialogue();
     }
 
     public void SubmitAnswer(string answer)
@@ -255,11 +277,20 @@ public class DialogueUI : MonoBehaviour
 
     public void GameOver(AsyncOperation sceneAsync)
     {
+        PrintMain("");
+        phase = DialoguePhase.Unavailable;
+        gameOver.Activate(() =>
+        {
+            phase = DialoguePhase.GameOver;
+            gameOverAction = sceneAsync;
+            Debug.Log("game over ready");
+        });
     }
 
     public void LoadScene(AsyncOperation sceneAsync)
     {
         PrintMain("");
+        phase = DialoguePhase.Unavailable;
         transition.Transition(() => { sceneAsync.allowSceneActivation = true; });
     }
 }

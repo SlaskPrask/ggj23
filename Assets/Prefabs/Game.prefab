@@ -61,7 +61,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d81bf5013ced3840982b8344c6c004e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 21300000, guid: 8fd944de2dd07804194b06ec38e4a0c2, type: 3}
+  image: {fileID: 21300000, guid: 453b503c5cdc3944fad63971fce013ba, type: 3}
+  color: {r: 0.13333334, g: 0.09803922, b: 0.050980393, a: 1}
+--- !u!1 &883535798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 883535799}
+  - component: {fileID: 883535801}
+  - component: {fileID: 883535800}
+  m_Layer: 0
+  m_Name: GameOver
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &883535799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883535798}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5523349568507166485}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &883535801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883535798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08758117782e575458fba3ccb1c47685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &883535800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 883535798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 565bac17433789e42a71dd2c30cab4ad, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: a5589fd3bf9adc3439182a2c1f161e65, type: 3}
+  m_SortingOrder: 1
 --- !u!1 &1863779415
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +218,7 @@ Transform:
   - {fileID: 4510267609873554094}
   - {fileID: 419959621}
   - {fileID: 1863779416}
+  - {fileID: 883535799}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -228,6 +291,7 @@ MonoBehaviour:
   reader: {fileID: 4490435938793449773}
   textCharacterDelay: 0.02
   transition: {fileID: 1863779417}
+  gameOver: {fileID: 883535801}
 --- !u!114 &6281627267740660509
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ public class DialogueOption : UIBehaviour
     {
         textElement = element.Query<Label>("option-text");
 
-        element.AddManipulator(new Clickable(e => { dialogUI.SelectOption(id); }));
+        UIInputs.Button(element, () => { dialogUI.SelectOption(id); });
     }
 
     public float GetHeight()

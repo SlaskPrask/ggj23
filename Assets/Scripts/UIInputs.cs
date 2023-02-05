@@ -11,6 +11,6 @@ public static class UIInputs
             AudioManager.PlayAudio(AudioManager.SoundClip.CLICK);
             action();
         }));
-        element.RegisterCallback<MouseOverEvent>(e => { AudioManager.PlayAudio(AudioManager.SoundClip.HOVER); });
+        element.RegisterCallback<MouseEnterEvent>(e => { AudioManager.PlayAudio(AudioManager.SoundClip.HOVER); });
     }
 }
