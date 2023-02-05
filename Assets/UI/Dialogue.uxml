@@ -8,7 +8,7 @@
             </ui:VisualElement>
             <ui:VisualElement name="text-container" class="dialogue-main-text-container">
                 <ui:Label display-tooltip-when-elided="true" name="dialogue-text-full" class="dialogue-text-full dialogue-text" style="visibility: hidden; display: none;" />
-                <ui:Label text="I think there should be text here" display-tooltip-when-elided="true" name="dialogue-text-scroll" class="dialogue-text dialogue-text-scroll" />
+                <ui:Label text="&#10;" display-tooltip-when-elided="true" name="dialogue-text-scroll" class="dialogue-text dialogue-text-scroll" />
             </ui:VisualElement>
             <ui:VisualElement name="options" class="options" style="color: rgb(210, 210, 210); flex-direction: row;" />
         </ui:VisualElement>
