@@ -18,13 +18,14 @@ public class SceneTransition : MonoBehaviour
 
     public void Start()
     {
-        screen.style.opacity = 0;
         StartCoroutine(doTransition());
     }
 
     private IEnumerator doTransition()
     {
-        yield return new WaitForSeconds(3);
+        yield return null;
+        screen.style.opacity = 0;
+        yield return new WaitForSeconds(3.5f);
         if (doneCallback != null)
         {
             doneCallback();
