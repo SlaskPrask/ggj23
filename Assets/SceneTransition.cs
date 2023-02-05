@@ -29,6 +29,7 @@ public class SceneTransition : MonoBehaviour
         if (doneCallback != null)
         {
             doneCallback();
+            doneCallback = null;
         }
     }
 
