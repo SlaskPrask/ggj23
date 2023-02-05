@@ -278,6 +278,7 @@ public class DialogueReader : MonoBehaviour
         {
             SelectOption(-1);
         }
+        AdvanceDialogue();
     }
 
     public float GetTimerNormalized()
