@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class DialogueUI : MonoBehaviour
@@ -21,7 +22,8 @@ public class DialogueUI : MonoBehaviour
     public float textCharacterDelay = 0.05f;
 
     private UIDocument uiDocument;
-    private Label dialogueFullText;
+    private int textPosition;
+    private string currentText = "";
     private Label dialogueText;
     private VisualElement optionsContainer;
     private VisualElement dialogueBox;
@@ -39,17 +41,12 @@ public class DialogueUI : MonoBehaviour
         uiDocument = GetComponent<UIDocument>();
 
         dialogueBox = uiDocument.rootVisualElement.Query("dialogue");
-        dialogueFullText = uiDocument.rootVisualElement.Query<Label>("dialogue-text-full");
         dialogueText = uiDocument.rootVisualElement.Query<Label>("dialogue-text-scroll");
         optionsContainer = uiDocument.rootVisualElement.Query("options");
 
         phase = DialoguePhase.Ready;
 
         uiDocument.rootVisualElement.AddManipulator(new Clickable(e => { ProgressDialogue(); }));
-    }
-
-    void Start()
-    {
     }
 
     public void PrintMain(string text)
@@ -59,7 +56,8 @@ public class DialogueUI : MonoBehaviour
 
         noSubmit = false;
         optionsContainer.Clear();
-        dialogueFullText.text = text;
+        currentText = text;
+        textPosition = 0;
         dialogueText.text = "";
 
         if (scroll != null)
@@ -100,10 +98,11 @@ public class DialogueUI : MonoBehaviour
 
     private IEnumerator ScrollText()
     {
-        while (dialogueText.text.Length < dialogueFullText.text.Length)
+        while (textPosition < currentText.Length)
         {
+            dialogueText.text = currentText.Substring(0, textPosition) + "<color=#00000000>" + currentText.Substring(textPosition) + "</color>";
+            textPosition++;
             yield return textAppearDelay;
-            dialogueText.text += dialogueFullText.text[dialogueText.text.Length];
         }
 
         scroll = null;
@@ -150,7 +149,7 @@ public class DialogueUI : MonoBehaviour
     {
         phase = DialoguePhase.ShowOptions;
 
-        dialogueText.text = dialogueFullText.text;
+        dialogueText.text = currentText;
         if (scroll != null)
         {
             StopCoroutine(scroll);
@@ -225,6 +224,21 @@ public class DialogueUI : MonoBehaviour
         }
 
         reader.AdvanceDialogue();
+    }
+
+    public void OnKeyboardAccept(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+            ProgressDialogue();
+        }
+    }
+
+    public void OnKeyboardBack(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+        }
     }
 
     public void GameOver()

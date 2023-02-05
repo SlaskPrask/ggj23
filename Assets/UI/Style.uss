@@ -70,6 +70,7 @@
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    white-space: normal;
 }
 
 .dialogue-text-scroll {

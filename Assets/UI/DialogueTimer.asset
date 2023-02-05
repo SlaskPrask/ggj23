@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 810c585690ed8a74f975203a9f2ac895, type: 3}
   m_Name: DialogueTimer
   m_EditorClassIdentifier: 
-  uiDocument: {fileID: 0}
-  processorScript: {fileID: 0}
-  typeName: 
+  uiDocument: {fileID: 9197481963319205126, guid: 801675a41c25cf241b281e53deb08e95, type: 3}
+  processorScript: {fileID: 11500000, guid: 0e13bbf188e24c04e812e863b959a188, type: 3}
+  typeName: DialogueTimer

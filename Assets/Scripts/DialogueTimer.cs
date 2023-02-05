@@ -28,10 +28,10 @@ public class DialogueTimer : UIBehaviour
 
     private IEnumerator Grow()
     {
-        cursor.style.paddingLeft = 10;
-        cursor.style.paddingRight = 10;
-        cursor.style.paddingTop = 5;
-        cursor.style.paddingBottom = 5;
+        cursor.style.paddingLeft = 7;
+        cursor.style.paddingRight = 7;
+        cursor.style.paddingTop = 2;
+        cursor.style.paddingBottom = 2;
         yield return wait;
         StartCoroutine(Shrink());
     }
