@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DialogueSystem;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -9,6 +10,7 @@ public class DialogueUI : MonoBehaviour
 {
     private enum DialoguePhase
     {
+        Unavailable,
         MainText,
         ShowOptions,
         Ready
@@ -20,6 +22,7 @@ public class DialogueUI : MonoBehaviour
     public UIComponent timerComponent;
     public DialogueReader reader;
     public float textCharacterDelay = 0.05f;
+    public SceneTransition transition;
 
     private UIDocument uiDocument;
     private int textPosition;
@@ -37,6 +40,8 @@ public class DialogueUI : MonoBehaviour
 
     void Awake()
     {
+        transition.OnTransition(startDialogue);
+
         textAppearDelay = new WaitForSeconds(textCharacterDelay);
         uiDocument = GetComponent<UIDocument>();
 
@@ -44,9 +49,15 @@ public class DialogueUI : MonoBehaviour
         dialogueText = uiDocument.rootVisualElement.Query<Label>("dialogue-text-scroll");
         optionsContainer = uiDocument.rootVisualElement.Query("options");
 
-        phase = DialoguePhase.Ready;
+        phase = DialoguePhase.Unavailable;
 
         uiDocument.rootVisualElement.AddManipulator(new Clickable(e => { ProgressDialogue(); }));
+    }
+
+    private void startDialogue()
+    {
+        phase = DialoguePhase.Ready;
+        reader.AdvanceDialogue();
     }
 
     public void PrintMain(string text)
@@ -79,7 +90,7 @@ public class DialogueUI : MonoBehaviour
 
     public void SetOptions(string[] options)
     {
-        StartTimer();
+        StartTimer(DialogueType.PICK);
         for (int i = 0; i < options.Length; i++)
         {
             {
@@ -91,7 +102,7 @@ public class DialogueUI : MonoBehaviour
 
     public void SetTyping()
     {
-        StartTimer();
+        StartTimer(DialogueType.TYPE);
         DialogueTextInput textElement = inputComponent.Instantiate<DialogueTextInput>(optionsContainer, gameObject);
         textElement.SetUp(this);
     }
@@ -186,8 +197,9 @@ public class DialogueUI : MonoBehaviour
         }
     }
 
-    private void StartTimer()
+    private void StartTimer(DialogueType type)
     {
+        reader.StartQuietTimer(type);
         RemoveTimer();
 
         timer = timerComponent.Instantiate<DialogueTimer>(dialogueBox, gameObject);
@@ -247,5 +259,7 @@ public class DialogueUI : MonoBehaviour
 
     public void LoadScene(AsyncOperation sceneAsync)
     {
+        PrintMain("");
+        transition.Transition(() => { sceneAsync.allowSceneActivation = true; });
     }
 }

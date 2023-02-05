@@ -17,6 +17,7 @@ public class DialogueTimer : UIBehaviour
         root = element;
         bar = element.Query("timer-progressbar");
         cursor = element.Query("timer-cursor");
+        cursor.style.visibility = Visibility.Hidden;
 
         StartCoroutine(Grow());
     }
@@ -28,10 +29,10 @@ public class DialogueTimer : UIBehaviour
 
     private IEnumerator Grow()
     {
-        cursor.style.paddingLeft = 7;
-        cursor.style.paddingRight = 7;
-        cursor.style.paddingTop = 2;
-        cursor.style.paddingBottom = 2;
+        cursor.style.paddingLeft = 3;
+        cursor.style.paddingRight = 3;
+        cursor.style.paddingTop = 1;
+        cursor.style.paddingBottom = 1;
         yield return wait;
         StartCoroutine(Shrink());
     }
