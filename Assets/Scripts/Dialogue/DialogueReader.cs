@@ -20,7 +20,13 @@ public class DialogueReader : MonoBehaviour
 
 
     private MainDialogue tempDialogue;
+    private SpecialEvent gameOverDialogue;
     Coroutine routine;
+
+#if DEBUG
+    public bool testing = false;
+#endif
+
 
     private void Awake()
     {
@@ -31,6 +37,7 @@ public class DialogueReader : MonoBehaviour
         }
 
         tempDialogue = MainDialogue.CreateInstance<MainDialogue>();
+        gameOverDialogue = SpecialEvent.CreateInstance<SpecialEvent>();
         queuedDialogue = startDialogue;
         currentScene = SceneManager.GetActiveScene().buildIndex;
         quietTimer = quietTime;
@@ -38,7 +45,12 @@ public class DialogueReader : MonoBehaviour
 
     private void Start()
     {
-        AdvanceDialogue();
+#if DEBUG
+        if (testing)
+        {
+            AdvanceDialogue();
+        }
+#endif
     }
 
     /// <summary>
@@ -101,7 +113,12 @@ public class DialogueReader : MonoBehaviour
 
     public void AdvanceDialogue()
     {
-        if (queuedDialogue == null || queuedDialogue.dialogueType == DialogueType.NULL)
+        if (queuedDialogue == null)
+        {
+            return;
+        }
+
+        if (queuedDialogue.dialogueType == DialogueType.NULL)
         {
             Debug.LogError("Dialogue queue is null: " + name);
             return;
@@ -220,13 +237,15 @@ public class DialogueReader : MonoBehaviour
 
     private void GameOver()
     {
+        queuedDialogue = null;
         AsyncOperation sceneLoad = LoadScene(currentScene);
-        AudioManager.PlayAudio(AudioManager.SoundClip.GAME_OVER);
+        AudioManager.PlayMusic(AudioManager.MusicID.GAME_OVER);
         dialogueUI.GameOver(sceneLoad);
     }
 
     private void NextScene()
     {
+        queuedDialogue = null;
         AsyncOperation sceneLoad = LoadScene(currentScene + 1);
         dialogueUI.LoadScene(sceneLoad);
     }
