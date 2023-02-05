@@ -123,7 +123,64 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &6281627267740660506
+--- !u!1001 &1214768049
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.38439715
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.08343996
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.956764
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354248, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 125125957207354254, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9b8bdbaefb51479479a49e96faf8a6b0, type: 3}
+--- !u!1001 &1277049181
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -137,7 +194,7 @@ PrefabInstance:
     - target: {fileID: 4490435938793449773, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
       propertyPath: startDialogue
       value: 
-      objectReference: {fileID: 11400000, guid: 60559617209cf4548b252b7b4980761b, type: 2}
+      objectReference: {fileID: 11400000, guid: 9d5a933765278614ebf0b7df46b01463, type: 2}
     - target: {fileID: 5523349568507166485, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -184,81 +241,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
---- !u!114 &6281627267740660507 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6281627267762734750, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
-  m_PrefabInstance: {fileID: 6281627267740660506}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6281627267740660508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 304075dafe41db246b1db8191924fbb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &6281627267740660508 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6281627267762734747, guid: 5e480d1103c29ae40ab9372239512f58, type: 3}
-  m_PrefabInstance: {fileID: 6281627267740660506}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6281627267740660509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6281627267740660508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 61182680ded849e459e1520df248099b, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6281627267740660507}
-        m_TargetAssemblyTypeName: DialogueUI, Assembly-CSharp
-        m_MethodName: OnKeyboardAccept
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 8ce793e8-52a1-4386-8bf3-9431d2909340
-    m_ActionName: UI/Accept[/Keyboard/space,/Keyboard/enter]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6281627267740660507}
-        m_TargetAssemblyTypeName: DialogueUI, Assembly-CSharp
-        m_MethodName: OnKeyboardBack
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: dcd2fb8d-5f92-4f74-ab6a-b75617c98178
-    m_ActionName: UI/Back[/Keyboard/escape]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
