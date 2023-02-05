@@ -17,11 +17,13 @@ public class AudioManager : MonoBehaviour
     private float musicVol;
     private float voiceVol;
 
-    private StudioEventEmitter emitter;
+    private StudioEventEmitter musicEmitter;
+    private StudioEventEmitter voiceEmitter;
 
     public EventReference[] soundEFX;
     public EventReference[] music;
-    public EventReference[] voice;
+
+    private MusicID currentID;
 
     public void Initialize()
     {
@@ -39,7 +41,11 @@ public class AudioManager : MonoBehaviour
         SetMusic(musicVol);
         SetVoice(voiceVol);
     
-        emitter = GetComponent<StudioEventEmitter>();
+        musicEmitter = transform.GetChild(0).GetComponent<StudioEventEmitter>();
+        voiceEmitter = transform.GetChild(1).GetComponent<StudioEventEmitter>();
+
+        currentID = MusicID.NULL;
+        PlayMusic(MusicID.DRIPPING);
     }
 
     public static void SaveSettings()
@@ -85,17 +91,20 @@ public class AudioManager : MonoBehaviour
         RuntimeManager.PlayOneShot(GameManager.audio.soundEFX[(byte)clip]);
     }
 
-    public enum MusicID : byte
+    public enum MusicID : sbyte
     {
+        NULL = -1,
         CHAPTER_1 = 0,
-        CHAPTER_2 = 1,
-        CHAPTER_3 = 2,
-        GAME_OVER = 3,
+        GAME_OVER = 1,
+        DRIPPING = 2
     }
 
     public static void PlayMusic(MusicID id)
     {
-        StudioEventEmitter emitter = GameManager.audio.emitter;
+        if (id == GameManager.audio.currentID)
+            return;
+
+        StudioEventEmitter emitter = GameManager.audio.musicEmitter;
 
         if (emitter.IsPlaying())
         {
@@ -103,8 +112,27 @@ public class AudioManager : MonoBehaviour
             emitter.Stop();
         }
 
-        emitter.EventReference = GameManager.audio.music[(byte)id];
+        if (id == MusicID.NULL)
+        {
+            return;
+        }
+
+        emitter.EventReference = GameManager.audio.music[(sbyte)id];
         emitter.Play();
     }
 
+    public enum Mood : byte
+    {
+        NEUTRAL = 0,
+        BAD = 1,
+        GOOD = 2
+    }
+
+    public static void PlayVoice(Mood mood, byte character)
+    {
+        StudioEventEmitter emitter = GameManager.audio.voiceEmitter;
+        emitter.SetParameter("Mood", (float)mood);
+        emitter.SetParameter("Character", (float)character);
+
+    }
 }

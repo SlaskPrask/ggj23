@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{ccf904f2-1e6b-42be-8e00-b6d3ac56d150}">
+	<object class="AudioFile" id="{4de8e86a-9020-4497-a4ac-fd4b1b15b7f5}">
 		<property name="assetPath">
-			<value>shuffle.wav</value>
+			<value>Track, Rec (23) - Trimmed.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,10 +11,10 @@
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>0.56253968253968256</value>
+			<value>0.69999999999999996</value>
 		</property>
 		<relationship name="masterAssetFolder">
-			<destination>{cd33480f-1bfb-4713-abc2-dcbd52047c45}</destination>
+			<destination>{d9aea8e0-7012-4757-8a7f-756ca1036207}</destination>
 		</relationship>
 	</object>
 </objects>
