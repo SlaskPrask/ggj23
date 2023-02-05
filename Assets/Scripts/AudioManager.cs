@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     public static float voiceVol { get; private set; }  
 
     private StudioEventEmitter musicEmitter;
-    private StudioEventEmitter voiceEmitter;
+    private EventInstance musicInstance;
 
     public EventReference[] soundEFX;
     public EventReference[] music;
@@ -104,12 +104,10 @@ public class AudioManager : MonoBehaviour
         if (id == GameManager.audio.currentID)
             return;
 
-        StudioEventEmitter emitter = GameManager.audio.musicEmitter;
-
-        if (emitter.IsPlaying())
+        if (GameManager.audio.musicInstance.isValid())
         {
-            emitter.AllowFadeout = (id == MusicID.GAME_OVER);
-            emitter.Stop();
+            GameManager.audio.musicInstance.stop(id == MusicID.GAME_OVER ? FMOD.Studio.STOP_MODE.IMMEDIATE : FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            GameManager.audio.musicInstance.release();
         }
 
         if (id == MusicID.NULL)
@@ -117,8 +115,8 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        emitter.EventReference = GameManager.audio.music[(sbyte)id];
-        emitter.Play();
+        GameManager.audio.musicInstance = RuntimeManager.CreateInstance(GameManager.audio.music[(sbyte)id]);
+        GameManager.audio.musicInstance.start();
     }
 
     public enum Mood : byte
