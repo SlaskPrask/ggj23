@@ -171,7 +171,8 @@
 
 .volume-slider .unity-label {
     position: absolute;
-    left: -55px;
+    left: -65px;
+    color: #EEE;
 }
 
 .volume-slider .unity-slider__input {
@@ -186,4 +187,12 @@
 .main-menu-button .unity-label {
     font-size: 25px;
     color: rgba(185, 185, 185, 255);
+}
+
+.main-menu-button:hover .unity-label {
+    color: white;
+}
+
+.main-menu-button:active .unity-label {
+    color: #DDD;
 }
