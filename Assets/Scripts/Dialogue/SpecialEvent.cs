@@ -9,7 +9,8 @@ namespace DialogueSystem
         public enum GameEvent
         {
             GAME_OVER = 1,
-            LOAD_SCENE = 2
+            LOAD_SCENE = 2,
+            LOAD_MENU = 3
         }
 
         [SerializeField]

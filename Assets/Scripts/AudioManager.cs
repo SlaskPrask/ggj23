@@ -12,16 +12,17 @@ public class AudioManager : MonoBehaviour
     private Bus musicBus;
     private Bus voiceBus;
 
-    private float masterVol;
-    private float sfxVol;
-    private float musicVol;
-    private float voiceVol;
+    public static float masterVol { get; private set; }
+    public static float sfxVol { get; private set; }
+    public static float musicVol { get; private set; } 
+    public static float voiceVol { get; private set; }  
 
     private StudioEventEmitter musicEmitter;
     private StudioEventEmitter voiceEmitter;
 
     public EventReference[] soundEFX;
     public EventReference[] music;
+    public EventReference voice;
 
     private MusicID currentID;
 
@@ -42,7 +43,6 @@ public class AudioManager : MonoBehaviour
         SetVoice(voiceVol);
     
         musicEmitter = transform.GetChild(0).GetComponent<StudioEventEmitter>();
-        voiceEmitter = transform.GetChild(1).GetComponent<StudioEventEmitter>();
 
         currentID = MusicID.NULL;
         PlayMusic(MusicID.DRIPPING);
@@ -50,10 +50,10 @@ public class AudioManager : MonoBehaviour
 
     public static void SaveSettings()
     {
-        PlayerPrefs.SetFloat("master-bus", GameManager.audio.masterVol);
-        PlayerPrefs.SetFloat("sfx-bus", GameManager.audio.sfxVol);
-        PlayerPrefs.SetFloat("music-bus", GameManager.audio.musicVol);
-        PlayerPrefs.SetFloat("voice-bus", GameManager.audio.voiceVol);
+        PlayerPrefs.SetFloat("master-bus", masterVol);
+        PlayerPrefs.SetFloat("sfx-bus", sfxVol);
+        PlayerPrefs.SetFloat("music-bus", musicVol);
+        PlayerPrefs.SetFloat("voice-bus", voiceVol);
         PlayerPrefs.Save();
 
     }
@@ -130,9 +130,8 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayVoice(Mood mood, byte character)
     {
-        StudioEventEmitter emitter = GameManager.audio.voiceEmitter;
-        emitter.SetParameter("Mood", (float)mood);
-        emitter.SetParameter("Character", (float)character);
-
+        RuntimeManager.StudioSystem.setParameterByName("Mood", (byte)mood);
+        RuntimeManager.StudioSystem.setParameterByName("Character", character / 2f);
+        RuntimeManager.PlayOneShot(GameManager.audio.voice);
     }
 }

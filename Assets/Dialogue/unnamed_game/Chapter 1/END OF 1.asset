@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: END OF 1
   m_EditorClassIdentifier: 
   leadsTo: {fileID: 0}
-  doEvent: 0
+  doEvent: 2
