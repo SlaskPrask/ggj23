@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Style.uss?fileID=7433441132597879392&amp;guid=0c4982791bfade044810a98853e43250&amp;type=3#Style" />
-    <ui:VisualElement style="width: 100%; height: 100%; background-color: rgba(17, 10, 5, 255);">
-        <ui:Label text="THE CORE" display-tooltip-when-elided="true" name="title" style="-unity-text-align: upper-center; font-size: 40px; margin-top: 50px; color: rgba(255, 255, 255, 255);" />
-        <ui:VisualElement name="sliders" style="position: absolute; right: 0; bottom: 0;">
+    <ui:VisualElement style="width: 100%; height: 100%; background-color: rgb(17, 10, 5);">
+        <ui:Label text="THE CORE" display-tooltip-when-elided="true" name="title" style="-unity-text-align: upper-center; font-size: 40px; margin-top: 50px; color: rgb(255, 255, 255);" />
+        <ui:VisualElement name="fmod" style="position: absolute; left: 0; bottom: 0; width: 200px; height: 50px; background-image: url(&apos;project://database/Assets/Graphics/UI/FMOD_Logo_White_-_Black_Background.png?fileID=2800000&amp;guid=913c94c8071447e4091165bd12f6797d&amp;type=3#FMOD_Logo_White_-_Black_Background&apos;); -unity-background-scale-mode: scale-and-crop; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;" />
+        <ui:VisualElement name="sliders" style="position: absolute; right: 0; bottom: 0; margin-left: 0; margin-bottom: 10px; margin-right: 10px;">
             <ui:Label text="Volume" display-tooltip-when-elided="true" style="-unity-text-align: upper-center;" />
             <ui:VisualElement style="flex-direction: column;">
                 <ui:VisualElement class="volume-slider-container">
