@@ -35,7 +35,6 @@ namespace DialogueSystem
 
         public string GetParsedDialogue()
         {
-            Debug.Log("TODO: parse dialogue!");
             return dialogue;
         }
     }

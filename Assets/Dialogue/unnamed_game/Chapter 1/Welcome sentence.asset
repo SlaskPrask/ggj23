@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Welcome sentence
   m_EditorClassIdentifier: 
   leadsTo: {fileID: 11400000, guid: 64dfd35ba62b3f0458788e20c1312ea5, type: 2}
-  dialogue: 'Hello and welcome! I am Steve  the riddle master. '
+  dialogue: 'Hello and welcome! I am Steve the riddle master. '

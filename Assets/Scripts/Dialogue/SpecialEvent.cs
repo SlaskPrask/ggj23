@@ -20,6 +20,11 @@ namespace DialogueSystem
             dialogueType = DialogueType.EVENT;
         }
 
+        public void SetEvent(GameEvent e)
+        {
+            doEvent = e;
+        }
+
         public override void Invoke(DialogueReader reader)
         {
             reader.DoEvent(doEvent);
