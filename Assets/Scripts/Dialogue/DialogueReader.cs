@@ -42,7 +42,10 @@ public class DialogueReader : MonoBehaviour
         queuedDialogue = startDialogue;
         currentScene = SceneManager.GetActiveScene().buildIndex;
         quietTimer = quietTime;
+    }
 
+    private void Start()
+    {
         AudioManager.PlayMusic(AudioManager.MusicID.CHAPTER_1);
     }
 
@@ -106,6 +109,9 @@ public class DialogueReader : MonoBehaviour
                 break;
             case SpecialEvent.GameEvent.LOAD_SCENE:
                 NextScene();
+                break;
+            case SpecialEvent.GameEvent.LOAD_MENU:
+                MainMenu();
                 break;
             default:
                 break;
@@ -251,6 +257,13 @@ public class DialogueReader : MonoBehaviour
     {
         queuedDialogue = null;
         AsyncOperation sceneLoad = LoadScene(currentScene + 1);
+        dialogueUI.LoadScene(sceneLoad);
+    }
+
+    private void MainMenu()
+    {
+        queuedDialogue = null;
+        AsyncOperation sceneLoad = LoadScene(0);
         dialogueUI.LoadScene(sceneLoad);
     }
 

@@ -130,8 +130,20 @@ public class AudioManager : MonoBehaviour
 
     public static void PlayVoice(Mood mood, byte character)
     {
-        RuntimeManager.StudioSystem.setParameterByName("Mood", (byte)mood);
-        RuntimeManager.StudioSystem.setParameterByName("Character", character / 2f);
-        RuntimeManager.PlayOneShot(GameManager.audio.voice);
+        EventInstance instance = RuntimeManager.CreateInstance(GameManager.audio.voice);
+
+        FMOD.RESULT res = instance.setParameterByName("Mood", (byte)mood); ;
+        if (res != FMOD.RESULT.OK)
+        {
+            Debug.Log("Something wrong mood");
+        }
+        res = instance.setParameterByName("Character", character / 2f);
+        if (res != FMOD.RESULT.OK)
+        {
+            Debug.Log("Something wrong char");
+        }
+
+        instance.start();
+        instance.release();
     }
 }
